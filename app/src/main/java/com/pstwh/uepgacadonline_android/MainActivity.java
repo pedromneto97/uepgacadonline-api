@@ -1,5 +1,6 @@
 package com.pstwh.uepgacadonline_android;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +22,12 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Scrapper scrapper = new Scrapper(ra.getText().toString(), password.getText().toString());
-                scrapper.getGrade();
+                UepgWrapper uepg = new UepgWrapper(ra.getText().toString(), password.getText().toString());
+
+                Intent authenticate = new Intent(MainActivity.this, GradeActivity.class);
+                authenticate.putExtra("uepg", uepg);
+
+                startActivity(authenticate);
             }
         });
     }
