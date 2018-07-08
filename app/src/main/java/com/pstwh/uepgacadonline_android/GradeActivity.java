@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pstwh.uepgacadonline_android.adapters.GradesAdapter;
 import com.pstwh.uepgacadonline_android.models.Grade;
@@ -37,13 +38,14 @@ public class GradeActivity extends AppCompatActivity {
         try {
             List<Grade> grades = uepg.getGrade();
 
+            System.out.println(grades);
+
             GradesAdapter adapter = new GradesAdapter(this, grades);
             gradeList.setAdapter(adapter);
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Toast.makeText(GradeActivity.this, "Usuário ou senha inválidos!", Toast.LENGTH_LONG).show();
+            finish();
         }
 
         /*
