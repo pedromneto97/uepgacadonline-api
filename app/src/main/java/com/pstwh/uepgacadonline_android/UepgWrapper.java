@@ -1,5 +1,7 @@
 package com.pstwh.uepgacadonline_android;
 
+import com.pstwh.uepgacadonline_android.models.Grade;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -9,8 +11,6 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -60,13 +60,13 @@ public class UepgWrapper implements Serializable {
         }
     }
 
-    public ArrayList<ArrayList<String>> getGrade()
+    public ArrayList<Grade> getGrade()
             throws InterruptedException, ExecutionException {
 
         ExecutorService ex = Executors.newSingleThreadExecutor();
-        Future<ArrayList<ArrayList<String>>> future =
-                ex.submit(new Callable<ArrayList<ArrayList<String>>>() {
-            public ArrayList<ArrayList<String>> call() throws Exception {
+        Future<ArrayList<Grade>> future =
+                ex.submit(new Callable<ArrayList<Grade>>() {
+            public ArrayList<Grade> call() throws Exception {
 
                 Document doc = Jsoup
                         .connect("https://sistemas.uepg.br/academicoonline/avaliacaoDesempenho/index")
@@ -78,18 +78,24 @@ public class UepgWrapper implements Serializable {
                 Elements rows = table.select("tr");
                 rows.remove(0);
 
-                ArrayList<ArrayList<String>> grades =
-                        new ArrayList<ArrayList<String>>();
+                ArrayList<Grade> grades = new ArrayList<Grade>();
 
                 for (int i = 0; i < rows.size(); i++) {
+                    Elements cols = rows.get(i).select("td");
+                    Grade grade = new Grade(
+                            cols.get(0).text(),
+                            cols.get(1).text(),
+                            cols.get(2).text(),
+                            cols.get(3).text(),
+                            cols.get(4).text(),
+                            cols.get(5).text(),
+                            cols.get(6).text(),
+                            cols.get(7).text(),
+                            cols.get(8).text(),
+                            cols.get(9).text(),
+                            cols.get(10).text()
+                    );
 
-                    ArrayList<String> grade =
-                            new ArrayList<String>();
-
-                    Elements colsElement = rows.get(i).select("td");
-                    for (int j = 0; j < colsElement.size(); j++) {
-                        grade.add(colsElement.get(j).text());
-                    }
                     grades.add(grade);
                 }
 
@@ -97,11 +103,12 @@ public class UepgWrapper implements Serializable {
             }
         });
 
-        ArrayList<ArrayList<String>> grades = future.get();
+        ArrayList<Grade> grades = future.get();
         ex.shutdown();
 
         return grades;
     }
+
 
     public Map<String, String> getCookies() {
         return cookies;

@@ -7,12 +7,19 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.pstwh.uepgacadonline_android.adapters.GradesAdapter;
+import com.pstwh.uepgacadonline_android.models.Grade;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class GradeActivity extends AppCompatActivity {
@@ -25,10 +32,26 @@ public class GradeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         UepgWrapper uepg = (UepgWrapper) intent.getSerializableExtra("uepg");
 
+        ListView gradeList = (ListView) findViewById(R.id.list_view_grade);
+
+        try {
+            List<Grade> grades = uepg.getGrade();
+
+            GradesAdapter adapter = new GradesAdapter(this, grades);
+            gradeList.setAdapter(adapter);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        /*
         try {
             ArrayList<ArrayList<String>> grades = uepg.getGrade();
 
             TableLayout table = (TableLayout) findViewById(R.id.grade_table_layout);
+
             for(ArrayList<String> grade : grades) {
                 TableRow row = new TableRow(this);
 
@@ -45,9 +68,10 @@ public class GradeActivity extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        */
+
 
         /*
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
