@@ -5,13 +5,13 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Empreendedorismo"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:paddingLeft="8dp"
-        android:paddingTop="8dp"
+        android:padding="8dp"
+        android:gravity="center_horizontal"
         android:id="@+id/item_grade_name"/>
 
     <LinearLayout
@@ -19,22 +19,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_date_range_black_24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="32dp"
+            android:tint="#7f7f7f"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:text="Calendário:"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:paddingLeft="32dp"
             android:paddingRight="8dp"
-            android:paddingTop="16dp"/>
+            android:gravity="center_vertical"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="2018-1"
             android:textSize="16sp"
-            android:id="@+id/item_grade_calendar"/>
+            android:id="@+id/item_grade_calendar"
+            android:gravity="center_vertical"/>
 
     </LinearLayout>
 
@@ -43,21 +53,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_turned_in_not_black_24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="32dp"
+            android:tint="#7f7f7f"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:text="Código:"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:paddingLeft="32dp"
-            android:paddingRight="8dp"/>
+            android:paddingRight="8dp"
+            android:gravity="center_vertical"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="203069"
             android:textSize="16sp"
-            android:id="@+id/item_grade_cod"/>
+            android:id="@+id/item_grade_cod"
+            android:gravity="center_vertical"/>
 
     </LinearLayout>
 
@@ -66,21 +87,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_account_box_black_24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="32dp"
+            android:tint="#7f7f7f"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:text="Condição"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:paddingLeft="32dp"
-            android:paddingRight="8dp"/>
+            android:paddingRight="8dp"
+            android:gravity="center_vertical"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="A"
             android:textSize="16sp"
-            android:id="@+id/item_grade_status"/>
+            android:id="@+id/item_grade_status"
+            android:gravity="center_vertical"/>
 
     </LinearLayout>
 
@@ -89,21 +121,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_airline_seat_flat_black_24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="32dp"
+            android:tint="#7f7f7f"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:text="Faltas:"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:paddingLeft="32dp"
-            android:paddingRight="8dp"/>
+            android:paddingRight="8dp"
+            android:gravity="center_vertical"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="0"
             android:textSize="16sp"
-            android:id="@+id/item_grade_absences"/>
+            android:id="@+id/item_grade_absences"
+            android:gravity="center_vertical"/>
 
     </LinearLayout>
 
@@ -112,21 +155,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_airline_seat_flat_black_24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="32dp"
+            android:tint="#7f7f7f"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:text="Frequência"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:paddingLeft="32dp"
-            android:paddingRight="8dp"/>
+            android:paddingRight="8dp"
+            android:gravity="center_vertical"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="100"
             android:textSize="16sp"
-            android:id="@+id/item_grade_attendance"/>
+            android:id="@+id/item_grade_attendance"
+            android:gravity="center_vertical"/>
 
     </LinearLayout>
 
@@ -135,21 +189,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_filter_1_black_24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="32dp"
+            android:tint="#7f7f7f"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:text="Nota 1:"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:paddingLeft="32dp"
-            android:paddingRight="8dp"/>
+            android:paddingRight="8dp"
+            android:gravity="center_vertical"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="9"
             android:textSize="16sp"
-            android:id="@+id/item_grade_grade_1"/>
+            android:id="@+id/item_grade_grade_1"
+            android:gravity="center_vertical"/>
 
     </LinearLayout>
 
@@ -158,21 +223,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_filter_2_black_24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="32dp"
+            android:tint="#7f7f7f"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:text="Nota 2:"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:paddingLeft="32dp"
-            android:paddingRight="8dp"/>
+            android:paddingRight="8dp"
+            android:gravity="center_vertical"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="8"
             android:textSize="16sp"
-            android:id="@+id/item_grade_grade_2"/>
+            android:id="@+id/item_grade_grade_2"
+            android:gravity="center_vertical"/>
 
     </LinearLayout>
 
@@ -181,21 +257,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_filter_none_black_24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="32dp"
+            android:tint="#7f7f7f"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:text="Nota E:"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:paddingLeft="32dp"
-            android:paddingRight="8dp"/>
+            android:paddingRight="8dp"
+            android:gravity="center_vertical"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text=""
             android:textSize="16sp"
-            android:id="@+id/item_grade_grade_e"/>
+            android:id="@+id/item_grade_grade_e"
+            android:gravity="center_vertical"/>
 
     </LinearLayout>
 
@@ -204,21 +291,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_filter_none_black_24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="32dp"
+            android:tint="#7f7f7f"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:text="Média:"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:paddingLeft="32dp"
-            android:paddingRight="8dp"/>
+            android:paddingRight="8dp"
+            android:gravity="center_vertical"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="8,5"
             android:textSize="16sp"
-            android:id="@+id/item_grade_grade_mean"/>
+            android:id="@+id/item_grade_grade_mean"
+            android:gravity="center_vertical"/>
 
     </LinearLayout>
 
@@ -227,22 +325,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Turma:"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:src="@drawable/ic_group_black_24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:paddingRight="8dp"
             android:paddingLeft="32dp"
-            android:paddingRight="8dp"/>
+            android:tint="#7f7f7f"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Turma:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingRight="8dp"
+            android:gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:text="T"
             android:textSize="16sp"
             android:id="@+id/item_grade_class_name"
-            android:paddingBottom="16dp"/>
+            android:gravity="center_vertical"/>
 
     </LinearLayout>
 
