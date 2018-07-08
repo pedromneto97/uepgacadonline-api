@@ -13,7 +13,7 @@
             android:layout_height="128dp"
             android:src="@drawable/ic_uepg"
             android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="16dp"
             android:tint="#3684BE"
             android:layout_gravity="center"/>
 
@@ -37,12 +37,29 @@
             android:layout_marginTop="16dp"
             android:id="@+id/login_button"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/login_button"
-            android:text="Versão não oficial"
-            android:gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/login_button"
+                android:text="Desenvolvido por alunos e colaboradores"
+                android:layout_marginRight="16dp"
+                android:gravity="center"/>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_octicons_mark_github"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:tint="#3684BE"
+                android:layout_gravity="center"
+                android:id="@+id/github_image_view"/>
+
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
