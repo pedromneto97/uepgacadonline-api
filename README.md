@@ -5,7 +5,7 @@
 
 Aplicação android não oficial para utilizar o sistema acadêmico da <b><a href="http://uepg.br/">uepg</a></b>.
 
-![enter image description here](https://media.giphy.com/media/w83p9feVsUHoMo3ElD/giphy.gif)
+![enter image description here](https://media.giphy.com/media/58FgpnRAGW5BgjzP1q/giphy.gif)
 
 ### Sobre
 
