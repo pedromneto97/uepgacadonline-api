@@ -11,6 +11,10 @@ Aplicação android não oficial para utilizar o sistema acadêmico da <b><a hre
 
 A ideia desse projeto é dar o passo inicial para que outras pessoas participem e adicionem as funcionalidades faltantes. <b>A uepg não apresenta sistema mobile acadêmico, então essa é uma boa oportunidade de fazer algo que ainda não existe.</b> A versão inicial apresenta apenas o login e listagem de notas (utilizando um scrapper no próprio sistema da universidade) .
 
+## Instalação
+A aplicação ainda não está na Play store.
+
+É possível fazer download da última build aqui: **[Download](https://github.com/pstwh/uepgacadonline-android/builds/acad-10-07-2018.apk)**
 
 ## Checklist
 - [x] Login
