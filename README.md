@@ -14,7 +14,7 @@ A ideia desse projeto é dar o passo inicial para que outras pessoas participem 
 ## Instalação
 A aplicação ainda não está na Play store.
 
-É possível fazer download da última build aqui: **[Download](https://github.com/pstwh/uepgacadonline-android/builds/acad-10-07-2018.apk)**
+É possível fazer download da última build aqui: **[DOWNLOAD](https://github.com/pstwh/uepgacadonline-android/raw/master/builds/acad-10-07-2018.apk)**
 
 ## Checklist
 - [x] Login
