@@ -1,6 +1,8 @@
 package com.pstwh.uepgacadonline_android;
 
+import com.pstwh.uepgacadonline_android.models.Education;
 import com.pstwh.uepgacadonline_android.models.Grade;
+import com.pstwh.uepgacadonline_android.models.Perfil;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -107,6 +109,49 @@ public class UepgWrapper implements Serializable {
         ex.shutdown();
 
         return grades;
+    }
+
+    public Perfil getPerfil() throws ExecutionException, InterruptedException {
+        ExecutorService ex = Executors.newSingleThreadExecutor();
+
+        Future<Perfil> future =
+                ex.submit(new Callable<Perfil>() {
+                    public Perfil call() throws Exception {
+
+                        Document doc = Jsoup
+                                .connect("https://sistemas.uepg.br/academicoonline/academico_pessoa/edit_validado")
+                                .cookies(cookies)
+                                .post();
+
+                        Elements tables = doc.select("table");
+
+                        Elements personRows = doc.select("table tr > td:eq(1)");
+                        Elements addressRows = tables.get(1).select("tr");
+                        Elements documentsRows = tables.get(2).select("tr");
+                        Elements militarSituationRows = tables.get(3).select("tr");
+                        Elements educationRows = tables.get(4).select("tr");
+
+
+                        for(Element personRow : personRows) {
+                            System.out.println(personRow.text());
+                        }
+
+                        Perfil perfil = new Perfil(
+                                null,
+                                null,
+                                null,
+                                null,
+                                null
+                        );
+
+                        return perfil;
+                    }
+                });
+
+        Perfil perfil = future.get();
+        ex.shutdown();
+
+        return perfil;
     }
 
 

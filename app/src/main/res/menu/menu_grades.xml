@@ -11,6 +11,11 @@
                 android:id="@+id/menu_item_documentos"
                 app:showAsAction="always"
                 android:title="Documentos" />
+
+            <item
+                android:id="@+id/menu_item_perfil"
+                app:showAsAction="always"
+                android:title="Perfil" />
         </menu>
     </item>
 </menu>

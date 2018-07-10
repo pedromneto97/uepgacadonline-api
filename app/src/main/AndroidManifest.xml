@@ -26,6 +26,7 @@
             android:name=".DocumentActivity"
             android:label="@string/title_activity_document"
             android:theme="@style/AppTheme" />
+        <activity android:name=".PerfilActivity"></activity>
     </application>
 
 </manifest>

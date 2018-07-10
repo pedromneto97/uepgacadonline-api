@@ -30,9 +30,6 @@ public class GradeActivity extends AppCompatActivity {
 
         try {
             List<Grade> grades = uepg.getGrade();
-
-            System.out.println(grades);
-
             GradesAdapter adapter = new GradesAdapter(this, grades);
             gradeList.setAdapter(adapter);
 
@@ -41,7 +38,8 @@ public class GradeActivity extends AppCompatActivity {
             finish();
         }
     }
-/*
+
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -57,6 +55,12 @@ public class GradeActivity extends AppCompatActivity {
                 Intent documents = new Intent(GradeActivity.this, DocumentActivity.class);
                 documents.putExtra("uepg", uepg);
                 startActivity(documents);
+                break;
+
+            case R.id.menu_item_perfil:
+                Intent perfil = new Intent(GradeActivity.this, PerfilActivity.class);
+                perfil.putExtra("uepg", uepg);
+                startActivity(perfil);
                 break;
         }
 
