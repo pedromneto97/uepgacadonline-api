@@ -76,7 +76,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Registro Acadêmico"
                     android:id="@+id/perfil_ra_edit_text"
                     android:enabled="false"/>
 
@@ -97,7 +96,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nome Completo"
                     android:id="@+id/perfil_complet_name_edit_text"
                     android:enabled="false"/>
 
@@ -117,8 +115,45 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nome Social"
                     android:id="@+id/perfil_social_name_edit_text"
+                    android:enabled="false"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sexo"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="-8dp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/perfil_genre_name_edit_text"
+                    android:enabled="false"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sexo Social"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="-8dp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/perfil_social_genre_edit_text"
                     android:enabled="false"/>
 
             </LinearLayout>
@@ -137,7 +172,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Data Nascimento"
                     android:id="@+id/perfil_birth_date_edit_text"
                     android:enabled="false"/>
 
@@ -157,7 +191,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nacionalidade"
                     android:id="@+id/perfil_nationality_edit_text"
                     android:enabled="false"/>
 
@@ -177,7 +210,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Estado Nascimento"
                     android:id="@+id/perfil_birth_state_edit_text"
                     android:enabled="false"/>
 
@@ -198,7 +230,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Cidade Nascimento"
                     android:id="@+id/perfil_birth_city_edit_text"
                     android:enabled="false"/>
 
@@ -219,7 +250,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="País Nascimento"
                     android:id="@+id/perfil_birth_country_edit_text"
                     android:enabled="false"/>
 
@@ -240,7 +270,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nome da Mãe"
                     android:id="@+id/perfil_mother_name_edit_text"
                     android:enabled="false"/>
 
@@ -261,7 +290,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nome do Pai"
                     android:id="@+id/perfil_father_name_edit_text"
                     android:enabled="false"/>
 
@@ -290,7 +318,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="CEP"
                     android:id="@+id/perfil_cep_edit_text"
                     android:enabled="false"/>
 
@@ -311,7 +338,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Rua/Avenida"
                     android:id="@+id/perfil_address_edit_text"
                     android:enabled="false"/>
 
@@ -332,7 +358,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Número Residência"
                     android:id="@+id/perfil_number_edit_text"
                     android:enabled="false"/>
 
@@ -353,7 +378,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Complemento"
                     android:id="@+id/perfil_complement_edit_text"
                     android:enabled="false"/>
 
@@ -374,7 +398,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Bairro"
                     android:id="@+id/perfil_neighborhood_edit_text"
                     android:enabled="false"/>
 
@@ -395,50 +418,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Cidade"
                     android:id="@+id/perfil_city_edit_text"
-                    android:enabled="false"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Estado"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="-8dp"/>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Estado"
-                    android:id="@+id/perfil_state_edit_text"
-                    android:enabled="false"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Telefone"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="-8dp"/>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Telefone"
-                    android:id="@+id/perfil_telephone_edit_text"
                     android:enabled="false"/>
 
             </LinearLayout>
@@ -458,7 +438,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Link Lattes"
                     android:id="@+id/perfil_lattes_edit_text"
                     android:enabled="false"/>
 
@@ -479,7 +458,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
                     android:id="@+id/perfil_email_edit_text"
                     android:enabled="false"/>
 
@@ -508,7 +486,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="CPF"
                     android:id="@+id/perfil_cpf_edit_text"
                     android:enabled="false"/>
 
@@ -529,7 +506,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="RG"
                     android:id="@+id/perfil_rg_edit_text"
                     android:enabled="false"/>
 
@@ -550,7 +526,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Orgão Expeditor"
                     android:id="@+id/perfil_agent_edit_text"
                     android:enabled="false"/>
 
@@ -571,7 +546,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Estado"
                     android:id="@+id/perfil_doc_state_edit_text"
                     android:enabled="false"/>
 
@@ -592,7 +566,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Número da Zona Eleitoral"
                     android:id="@+id/perfil_zone_number_edit_text"
                     android:enabled="false"/>
 
@@ -613,7 +586,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Zona Eleitoral"
                     android:id="@+id/perfil_zone_edit_text"
                     android:enabled="false"/>
 
@@ -642,7 +614,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Número do Documento Militar"
                     android:id="@+id/perfil_militar_document_numer_edit_text"
                     android:enabled="false"/>
 
@@ -663,7 +634,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Categoria Militar"
                     android:id="@+id/perfil_militar_category_edit_text"
                     android:enabled="false"/>
 
@@ -684,7 +654,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Orgão Expeditor"
                     android:id="@+id/perfil_militar_agent_edit_text"
                     android:enabled="false"/>
 
@@ -705,7 +674,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Data Expedição do Documento Militar"
                     android:id="@+id/perfil_militar_doc_date_edit_text"
                     android:enabled="false"/>
 
@@ -734,7 +702,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Grau"
                     android:id="@+id/perfil_degree_edit_text"
                     android:enabled="false"/>
 
@@ -755,7 +722,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Tipo"
                     android:id="@+id/perfil_type_edit_text"
                     android:enabled="false"/>
 
@@ -776,7 +742,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ano"
                     android:id="@+id/perfil_year_edit_text"
                     android:enabled="false"/>
 
@@ -797,7 +762,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Instituição"
                     android:id="@+id/perfil_institution_edit_text"
                     android:enabled="false"/>
 
@@ -818,7 +782,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Curso"
                     android:id="@+id/perfil_course_edit_text"
                     android:enabled="false"/>
 
@@ -839,7 +802,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="País"
                     android:id="@+id/perfil_education_country_edit_text"
                     android:enabled="false"/>
 
@@ -860,7 +822,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Estado"
                     android:id="@+id/perfil_education_state_edit_text"
                     android:enabled="false"/>
 
@@ -881,7 +842,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Cidade"
                     android:id="@+id/perfil_education_city_edit_text"
                     android:enabled="false"/>
 

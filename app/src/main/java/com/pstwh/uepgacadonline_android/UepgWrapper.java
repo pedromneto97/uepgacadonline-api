@@ -1,12 +1,7 @@
 package com.pstwh.uepgacadonline_android;
 
-import com.pstwh.uepgacadonline_android.models.Address;
-import com.pstwh.uepgacadonline_android.models.Documents;
-import com.pstwh.uepgacadonline_android.models.Education;
 import com.pstwh.uepgacadonline_android.models.Grade;
-import com.pstwh.uepgacadonline_android.models.MilitarSituation;
 import com.pstwh.uepgacadonline_android.models.Perfil;
-import com.pstwh.uepgacadonline_android.models.Person;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -129,7 +124,11 @@ public class UepgWrapper implements Serializable {
 
                         Elements rows = doc.select("table tr > td:eq(1)");
 
-                        Person personalData = new Person(
+                        for(Element row : rows) {
+                            System.out.println("ROW:"+row.text());
+                        }
+
+                        Perfil perfil = new Perfil(
                                 rows.get(0).text(),
                                 rows.get(1).text(),
                                 rows.get(2).text(),
@@ -141,39 +140,26 @@ public class UepgWrapper implements Serializable {
                                 rows.get(8).text(),
                                 rows.get(9).text(),
                                 rows.get(10).text(),
-                                rows.get(11).text()
-                        );
-
-                        Address address = new Address(
-                                rows.get(12).text(),
-                                rows.get(13).text(),
-                                rows.get(14).text(),
-                                rows.get(15).text(),
-                                rows.get(16).text(),
-                                rows.get(17).text(),
+                                rows.get(11).text(),
+                                rows.get(12).select("input").first().attr("value"),
+                                rows.get(13).select("input").first().attr("value"),
+                                rows.get(14).select("input").first().attr("value"),
+                                rows.get(15).select("input").first().attr("value"),
+                                rows.get(16).select("input").first().attr("value"),
+                                rows.get(17).select("input").first().attr("value"),
                                 rows.get(18).text(),
-                                rows.get(19).text(),
-                                rows.get(20).text(),
-                                rows.get(21).text()
-                        );
-
-                        Documents documents = new Documents(
-                                rows.get(21).text(),
+                                rows.get(19).select("input").first().attr("value"),
+                                rows.get(20).select("input").first().attr("value"),
+                                rows.get(21).select("input").first().attr("value"),
                                 rows.get(22).text(),
                                 rows.get(23).text(),
                                 rows.get(24).text(),
                                 rows.get(25).text(),
-                                rows.get(26).text()
-                        );
-
-                        MilitarSituation militarSituation = new MilitarSituation(
+                                rows.get(26).text(),
                                 rows.get(27).text(),
                                 rows.get(28).text(),
                                 rows.get(29).text(),
-                                rows.get(30).text()
-                        );
-
-                        Education education = new Education(
+                                rows.get(30).text(),
                                 rows.get(31).text(),
                                 rows.get(32).text(),
                                 rows.get(33).text(),
@@ -181,15 +167,8 @@ public class UepgWrapper implements Serializable {
                                 rows.get(35).text(),
                                 rows.get(36).text(),
                                 rows.get(37).text(),
-                                rows.get(38).text()
-                        );
-
-                        Perfil perfil = new Perfil(
-                                personalData,
-                                address,
-                                documents,
-                                militarSituation,
-                                education
+                                rows.get(38).text(),
+                                rows.get(39).text()
                         );
 
                         return perfil;

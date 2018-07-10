@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.pstwh.uepgacadonline_android.helpers.PerfilFormHelper;
 import com.pstwh.uepgacadonline_android.models.Perfil;
 
 import java.util.concurrent.ExecutionException;
@@ -21,7 +22,10 @@ public class PerfilActivity extends AppCompatActivity {
         uepg = (UepgWrapper) intent.getSerializableExtra("uepg");
 
         try {
-            Perfil p = uepg.getPerfil();
+            Perfil perfil = uepg.getPerfil();
+            PerfilFormHelper helper = new PerfilFormHelper(PerfilActivity.this);
+
+            helper.setPerfil(perfil);
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
