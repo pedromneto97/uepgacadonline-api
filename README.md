@@ -16,6 +16,9 @@ A ideia desse projeto é dar o passo inicial para que outras pessoas participem 
 - [x] Login
 - [x] Listar notas
 - [ ] Download de Documentos
+- [x] Mostrar Perfil
 - [ ] Editar Perfil
 - [ ] Contato
+- [x] Página de Contribuição Estática
+- [ ] Página de Contribuição Dinâmica
 - [ ] Atividades Complementares

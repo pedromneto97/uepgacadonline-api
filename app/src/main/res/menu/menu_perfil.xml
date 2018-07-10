@@ -13,9 +13,9 @@
                 android:title="Contribuidores" />
 
             <item
-                android:id="@+id/menu_item_perfil"
+                android:id="@+id/menu_item_notas"
                 app:showAsAction="always"
-                android:title="Perfil" />
+                android:title="Notas" />
         </menu>
     </item>
 </menu>

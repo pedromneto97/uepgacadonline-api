@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 UepgWrapper uepg = new UepgWrapper(ra.getText().toString(), password.getText().toString());
 
-                System.out.println(uepg.getCookies());
-
                 Intent authenticate = new Intent(MainActivity.this, GradeActivity.class);
                 authenticate.putExtra("uepg", uepg);
 

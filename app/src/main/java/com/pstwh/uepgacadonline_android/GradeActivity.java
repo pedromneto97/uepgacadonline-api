@@ -1,7 +1,12 @@
 package com.pstwh.uepgacadonline_android;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -55,10 +60,9 @@ public class GradeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_item_documentos:
-                Intent documents = new Intent(GradeActivity.this, DocumentActivity.class);
-                documents.putExtra("uepg", uepg);
-                startActivity(documents);
+            case R.id.menu_item_contributors:
+                Intent contributors = new Intent(GradeActivity.this, ContributorsActivity.class);
+                startActivity(contributors);
                 break;
 
             case R.id.menu_item_perfil:
