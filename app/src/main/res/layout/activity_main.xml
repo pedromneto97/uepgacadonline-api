@@ -83,6 +83,8 @@
                     android:layout_height="wrap_content"
                     android:text="Entrar"
                     android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="#fff"
                     android:id="@+id/login_button"/>
 
                 <LinearLayout

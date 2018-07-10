@@ -2,4 +2,5 @@
     <string name="app_name">Acadêmico Online</string>
     <string name="title_activity_grade">Notas</string>
     <string name="title_activity_document">Documentos</string>
+    <string name="title_activity_perfil">Perfil</string>
 </resources>

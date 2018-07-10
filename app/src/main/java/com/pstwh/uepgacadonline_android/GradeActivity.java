@@ -3,6 +3,7 @@ package com.pstwh.uepgacadonline_android;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,6 +24,10 @@ public class GradeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.custom_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         Intent intent = getIntent();
         uepg = (UepgWrapper) intent.getSerializableExtra("uepg");
 
@@ -39,7 +44,6 @@ public class GradeActivity extends AppCompatActivity {
         }
     }
 
-    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -66,5 +70,4 @@ public class GradeActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    */
 }
