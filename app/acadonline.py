@@ -19,26 +19,96 @@ def index():
 
     fields = ["login", "password"]
 
-    # try:
-    user = {field: data[field] for field in fields}
+    try:
+        user = {field: data[field] for field in fields}
 
-    index = requests.get(acadonline_urls["home"])
-    headers_raw = dict((key, value) for key, value in index.cookies.items())
-    print(headers_raw)
-    headers = {"cookie": f'JSESSIONID={headers_raw["JSESSIONID"]};'}
-    print(headers)
+        index = requests.get(acadonline_urls["home"])
+        headers_raw = dict((key, value) for key, value in index.cookies.items())
+        print(headers_raw)
+        headers = {"cookie": f'JSESSIONID={headers_raw["JSESSIONID"]};'}
+        print(headers)
 
-    auth = requests.post(acadonline_urls["auth"], headers=headers)
+        auth = requests.post(acadonline_urls["auth"], user, headers=headers)
+
+        return jsonify(
+            {
+                "status": True,
+                "message": "Login realizado com sucesso!",
+                "token": headers_raw["JSESSIONID"],
+            }
+        )
+    except:
+        return jsonify({"status": False, "message": "Falha ao realizar login!"})
+
+
+@acadonline.route("/perfil", methods=["GET"])
+def get_perfil():
+    pass
+
+
+@acadonline.route("/perfil", methods=["POST"])
+def set_perfil():
+    pass
+
+
+@acadonline.route("/photo", methods=["POST"])
+def set_photo():
+    pass
+
+
+# censo
+
+
+@acadonline.route("/password", methods=["POST"])
+def set_password():
+    pass
+
+
+@acadonline.route("/documents", methods=["GET"])
+def get_documents():
+    pass
+
+
+@acadonline.route("/grades", methods=["GET"])
+def get_grades():
+    jsession = request.headers.get("jsession")
+
+    headers = {"cookie": f"JSESSIONID={jsession};"}
+
+    grades = requests.get(acadonline_urls["grades"], headers=headers)
+
+    print(grades.content)
 
     return jsonify(
-        {
-            "status": True,
-            "message": "Login realizado com sucesso!",
-            "token": headers_raw["JSESSIONID"],
-        }
+        {"status": True, "message": "Notas capturadas com sucesso!", "token": jsession}
     )
 
-    # except:
-    #    return jsonify({"status": False, "message": "Falha ao realizar login!"})
-    # cookie = {'cookie': f'JSESSIONID={requests.utils.dict_from_cookiejar(session.cookies)["JSESSIONID"]}; __utma=241181661.1990841241.1518980587.1520085361.1520277780.4; __utmz=241181661.1518980587.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)'}
-    # auth = session.request("POST", url['auth'], user, headers=self.cookie)
+
+@acadonline.route("/activities", methods=["GET"])
+def get_additional_activities():
+    pass
+
+
+@acadonline.route("/imposition", methods=["GET"])
+def imposition_of_degree():
+    pass
+
+
+@acadonline.route("/internship", methods=["GET"])
+def internship():
+    pass
+
+
+@acadonline.route("/downloads", methods=["GET"])
+def downloads():
+    pass
+
+
+@acadonline.route("/download", methods=["GET"])
+def download():
+    pass
+
+
+@acadonline.route("/contact/prograd", methods=["POST"])
+def contact_prograd():
+    pass
