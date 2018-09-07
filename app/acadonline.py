@@ -61,6 +61,9 @@ def set_photo():
 
 @acadonline.route("/password", methods=["POST"])
 def set_password():
+    jsession = request.headers.get("jsession")
+    headers = {"cookie": f"JSESSIONID={jsession};"}
+
     pass
 
 
@@ -72,7 +75,6 @@ def get_documents():
 @acadonline.route("/grades", methods=["GET"])
 def get_grades():
     jsession = request.headers.get("jsession")
-
     headers = {"cookie": f"JSESSIONID={jsession};"}
 
     grades = requests.get(acadonline_urls["grades"], headers=headers)
