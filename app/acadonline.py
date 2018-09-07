@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 
 import json
 
+from app.models.grade import Grade
 from utils.urls import acadonline_urls
 
 acadonline = Blueprint("acadonline", __name__, url_prefix="/acadonline")
@@ -77,12 +78,21 @@ def get_grades():
     jsession = request.headers.get("jsession")
     headers = {"cookie": f"JSESSIONID={jsession};"}
 
-    grades = requests.get(acadonline_urls["grades"], headers=headers)
+    grades_page = requests.get(acadonline_urls["grades"], headers=headers)
 
-    print(grades.content)
+    grades_raw = [
+        [cell.text for cell in row("td")]
+        for row in BeautifulSoup(grades_page.content, features="lxml")("tr")
+    ][1:]
+    grades = Grade(grades_raw).__dict__
 
     return jsonify(
-        {"status": True, "message": "Notas capturadas com sucesso!", "token": jsession}
+        {
+            "status": True,
+            "message": "Notas capturadas com sucesso!",
+            "token": jsession,
+            "grades": grades["disciplines"],
+        }
     )
 
 
