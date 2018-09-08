@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 
 import requests
 from bs4 import BeautifulSoup
@@ -6,7 +6,9 @@ from bs4 import BeautifulSoup
 import json
 
 from app.models.grade import Grade
+
 from utils.urls import acadonline_urls
+from utils.messages import success, error
 
 acadonline = Blueprint("acadonline", __name__, url_prefix="/acadonline")
 
@@ -14,7 +16,7 @@ acadonline = Blueprint("acadonline", __name__, url_prefix="/acadonline")
 @acadonline.route("/login", methods=["POST"])
 def index():
     if not request.json:
-        return jsonify({"status": False, "message": "Requisição inválida!"})
+        return error(message="Requisição inválida!")
 
     data = request.get_json()
 
@@ -31,19 +33,21 @@ def index():
 
         auth = requests.post(acadonline_urls["auth"], user, headers=headers)
 
-        return jsonify(
-            {
-                "status": True,
-                "message": "Login realizado com sucesso!",
-                "token": headers_raw["JSESSIONID"],
-            }
+        return success(
+            message="Login realizado com sucesso", token=headers_raw["JSESSIONID"]
         )
     except:
-        return jsonify({"status": False, "message": "Falha ao realizar login!"})
+        return error(message="Falha ao realizar login!")
 
 
 @acadonline.route("/perfil", methods=["GET"])
 def get_perfil():
+    jsession = request.headers.get("jsession")
+    headers = {"cookie": f"JSESSIONID={jsession};"}
+
+    perfil_page = requests.get(acadonline_urls["perfil_get"], headers=headers)
+    print(perfil_page)
+
     pass
 
 
@@ -65,7 +69,7 @@ def set_password():
     jsession = request.headers.get("jsession")
     headers = {"cookie": f"JSESSIONID={jsession};"}
 
-    pass
+    return sucess()
 
 
 @acadonline.route("/documents", methods=["GET"])
@@ -86,13 +90,10 @@ def get_grades():
     ][1:]
     grades = Grade(grades_raw).__dict__
 
-    return jsonify(
-        {
-            "status": True,
-            "message": "Notas capturadas com sucesso!",
-            "token": jsession,
-            "grades": grades["disciplines"],
-        }
+    return success(
+        message="Notas capturadas com sucesso!",
+        token=jsession,
+        grades=grades["disciplines"],
     )
 
 
