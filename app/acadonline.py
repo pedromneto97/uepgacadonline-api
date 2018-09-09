@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import json
 
 from app.models.grade import Grade
+from app.models.perfil import Perfil
 
 from utils.urls import acadonline_urls
 from utils.messages import success, error
@@ -46,9 +47,16 @@ def get_perfil():
     headers = {"cookie": f"JSESSIONID={jsession};"}
 
     perfil_page = requests.get(acadonline_urls["perfil_get"], headers=headers)
-    print(perfil_page)
+    perfil_raw = [
+        value.find("td", "value").text
+        for value in BeautifulSoup(perfil_page.content, features="lxml")("tr", "prop")
+    ]
 
-    pass
+    perfil = Perfil(*[field for field in perfil_raw]).__dict__
+
+    return success(
+        message="Perfil capturado com sucesso!", token=jsession, perfil=perfil
+    )
 
 
 @acadonline.route("/perfil", methods=["POST"])

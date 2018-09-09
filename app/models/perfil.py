@@ -30,6 +30,7 @@ class Perfil:
     document_agent: str
     document_state: str
     election_title_zone: str
+    election_title_number: str
     number: str
     category: str
     agente: str
