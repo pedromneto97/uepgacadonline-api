@@ -15,7 +15,7 @@ acadonline = Blueprint("acadonline", __name__, url_prefix="/acadonline")
 
 
 @acadonline.route("/login", methods=["POST"])
-def index():
+def login():
     if not request.json:
         return error(message="Requisição inválida!")
 
@@ -61,6 +61,22 @@ def get_perfil():
 
 @acadonline.route("/perfil", methods=["POST"])
 def set_perfil():
+
+    fields = [
+        "bairro",
+        "cep",
+        "cidade",
+        "complemento",
+        "ddd",
+        "email",
+        "id",
+        "logradouro",
+        "numeroTelefone",
+        "numero_residencia",
+        "uf",
+        "url_lattes",
+        "version",
+    ]
     pass
 
 
