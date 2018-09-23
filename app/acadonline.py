@@ -99,8 +99,6 @@ def set_perfil():
         acadonline_urls["perfil_set"], perfil, headers=headers
     )
 
-    print(perfil)
-
     return success(message="Perfil atualizado com sucesso", token=jsession)
     # except:
     # return error(message="Falha ao realizar atualização!")
@@ -119,7 +117,23 @@ def set_password():
     jsession = request.headers.get("jsession")
     headers = {"cookie": f"JSESSIONID={jsession};"}
 
-    return sucess()
+    if not request.json:
+        return error(message="Requisição inválida!")
+
+    data = request.get_json()
+
+    fields = ["senha1", "senha2"]
+
+    password = {field: data[field] for field in fields}
+    password["id"] = "72403"
+    password["_action_update"] = "Alterar"
+    password["_method"] = "PUT"
+
+    update_perfil = requests.post(
+        acadonline_urls["password"], password, headers=headers
+    )
+
+    return success(message="Perfil atualizado com sucesso", token=jsession)
 
 
 @acadonline.route("/documents", methods=["GET"])
