@@ -6,12 +6,14 @@ from bs4 import BeautifulSoup
 from utils.urls import pergamum_urls
 from utils.messages import success, error
 
+from app.models.book import Book
+
 pergamum = Blueprint("pergamum", __name__, url_prefix="/pergamum")
 
 
 @pergamum.route("/login", methods=["POST"])
 def login():
-    user = {"rs": "ajax_valida_acesso_novo", "rsargs": ["", ""]}
+    user = {"rs": "ajax_valida_acesso_novo"}
 
     auth = requests.request("POST", pergamum_urls["auth"], data=user)
     headers_raw = dict((key, value) for key, value in auth.cookies.items())
@@ -32,3 +34,22 @@ def home():
     print(home_page.content)
 
     return success(message="Meu pergamum capturado com sucesso!", token=phpsessid)
+
+
+@pergamum.route("/search", methods=["GET"])
+def search():
+    phpsessid = request.headers.get("phpsessid")
+    headers = {"cookie": f"PHPSESSID={phpsessid};"}
+
+    params = {
+        "rs": "ajax_resultados",
+        "rsargs[]": ["20", "3", "L", "carl", "palavra", "L", "obra", "5ba7c0ba402ab"],
+    }
+
+    search_page = requests.get(pergamum_urls["search"], params=params, headers=headers)
+
+    books_raw = BeautifulSoup(search_page.content, features="lxml")("table")
+
+    print(books_raw)
+
+    return success(message="Livros retornados com sucesso!", token=phpsessid)

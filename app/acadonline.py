@@ -137,6 +137,21 @@ def set_password():
     return success(message="Perfil atualizado com sucesso", token=jsession)
 
 
+@acadonline.route("/rememberpassword", methods=["POST"])
+def remember_password():
+    jsession = request.headers.get("jsession")
+    headers = {"cookie": f"JSESSIONID={jsession};"}
+
+    params = {"_action_passo2": "OK", "registroAcademico": "14147326"}
+
+    request_remember_page = request.post(
+        acadonline_urls["remember_password"], params, headers=headers
+    )
+
+    # return success(message="Senha enviada por email com sucesso", token=jsession)
+    return error(message="Serviço ainda não finalizado")
+
+
 @acadonline.route("/documents", methods=["GET"])
 def get_documents():
     pass
