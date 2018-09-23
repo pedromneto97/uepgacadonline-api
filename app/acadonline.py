@@ -2,6 +2,7 @@ from flask import Blueprint, request
 
 import requests
 from bs4 import BeautifulSoup
+import re
 
 import json
 
@@ -48,7 +49,12 @@ def get_perfil():
 
     perfil_page = requests.get(acadonline_urls["perfil_get"], headers=headers)
     perfil_raw = [
-        value.find("td", "value").text
+        value.find("td", "value")
+        .text.replace("\r", "")
+        .replace("\n", "")
+        .replace("\t", "")
+        .replace("/\s\s+/", "")
+        .strip()
         for value in BeautifulSoup(perfil_page.content, features="lxml")("tr", "prop")
     ]
 
@@ -61,6 +67,13 @@ def get_perfil():
 
 @acadonline.route("/perfil", methods=["POST"])
 def set_perfil():
+    jsession = request.headers.get("jsession")
+    headers = {"cookie": f"JSESSIONID={jsession};"}
+
+    if not request.json:
+        return error(message="Requisição inválida!")
+
+    data = request.get_json()
 
     fields = [
         "bairro",
@@ -75,9 +88,22 @@ def set_perfil():
         "numero_residencia",
         "uf",
         "url_lattes",
-        "version",
     ]
-    pass
+
+    # try:
+    perfil = {field: data[field] for field in fields}
+    perfil["id"] = "72403"
+    perfil["_action_update"] = "Alterar"
+
+    update_perfil = requests.post(
+        acadonline_urls["perfil_set"], perfil, headers=headers
+    )
+
+    print(perfil)
+
+    return success(message="Perfil atualizado com sucesso", token=jsession)
+    # except:
+    # return error(message="Falha ao realizar atualização!")
 
 
 @acadonline.route("/photo", methods=["POST"])
