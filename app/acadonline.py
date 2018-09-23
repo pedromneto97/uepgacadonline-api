@@ -8,6 +8,7 @@ import json
 
 from app.models.grade import Grade
 from app.models.perfil import Perfil
+from app.models.activity import Activity
 
 from utils.urls import acadonline_urls
 from utils.messages import success, error
@@ -163,7 +164,26 @@ def get_grades():
 
 @acadonline.route("/activities", methods=["GET"])
 def get_additional_activities():
-    pass
+    jsession = request.headers.get("jsession")
+    headers = {"cookie": f"JSESSIONID={jsession};"}
+
+    activities_page = requests.get(acadonline_urls["activities"], headers=headers)
+
+    activities_raw = [
+        [cell.text for cell in row("td")]
+        for row in BeautifulSoup(activities_page.content, features="lxml")("tr", "even")
+    ]
+
+    activities = [
+        Activity(*[field for field in activity_raw]).__dict__
+        for activity_raw in activities_raw
+    ]
+
+    return success(
+        message="Atividades capturadas com sucesso!",
+        token=jsession,
+        activities=activities,
+    )
 
 
 @acadonline.route("/imposition", methods=["GET"])
