@@ -8,10 +8,10 @@ from utils.messages import success, error
 
 from app.models.book import Book
 
-pergamum = Blueprint("pergamum", __name__, url_prefix="/pergamum")
+pergamum_blueprint = Blueprint("pergamum", __name__, url_prefix="/pergamum")
 
 
-@pergamum.route("/login", methods=["POST"])
+@pergamum_blueprint.route("/login", methods=["POST"])
 def login():
     user = {"rs": "ajax_valida_acesso_novo"}
 
@@ -24,7 +24,7 @@ def login():
     )
 
 
-@pergamum.route("/home", methods=["GET"])
+@pergamum_blueprint.route("/home", methods=["GET"])
 def home():
     phpsessid = request.headers.get("phpsessid")
     headers = {"cookie": f"PHPSESSID={phpsessid};"}
@@ -36,7 +36,7 @@ def home():
     return success(message="Meu pergamum capturado com sucesso!", token=phpsessid)
 
 
-@pergamum.route("/search", methods=["GET"])
+@pergamum_blueprint.route("/search", methods=["GET"])
 def search():
     phpsessid = request.headers.get("phpsessid")
     headers = {"cookie": f"PHPSESSID={phpsessid};"}

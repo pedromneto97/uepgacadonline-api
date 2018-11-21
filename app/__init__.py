@@ -1,7 +1,7 @@
 from flask import Flask
 
-from app.acadonline import acadonline
-from app.pergamum import pergamum
+from app.blueprints.acadonline_blueprint import acadonline_blueprint
+from app.blueprints.pergamum_blueprint import pergamum_blueprint
 
 app = Flask(__name__)
 
@@ -11,5 +11,5 @@ def index():
     return "<h1>uepg-acadonline api</h1>"
 
 
-app.register_blueprint(acadonline)
-app.register_blueprint(pergamum)
+app.register_blueprint(acadonline_blueprint)
+app.register_blueprint(pergamum_blueprint)
