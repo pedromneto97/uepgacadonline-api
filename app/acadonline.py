@@ -10,6 +10,8 @@ from app.models.grade import Grade
 from app.models.perfil import Perfil
 from app.models.activity import Activity
 
+from app.repositories import acadonline_repository
+
 from utils.urls import acadonline_urls
 from utils.messages import success, error
 
@@ -18,99 +20,40 @@ acadonline = Blueprint("acadonline", __name__, url_prefix="/acadonline")
 
 @acadonline.route("/login", methods=["POST"])
 def login():
-    if not request.json:
-        return error(message="Requisição inválida!")
-
     data = request.get_json()
+    token = acadonline_repository.authenticate(data)
 
-    fields = ["login", "password"]
-
-    try:
-        user = {field: data[field] for field in fields}
-
-        index = requests.get(acadonline_urls["home"])
-        headers_raw = dict((key, value) for key, value in index.cookies.items())
-        print(headers_raw)
-        headers = {"cookie": f'JSESSIONID={headers_raw["JSESSIONID"]};'}
-        print(headers)
-
-        auth = requests.post(acadonline_urls["auth"], user, headers=headers)
-
-        return success(
-            message="Login realizado com sucesso", token=headers_raw["JSESSIONID"]
-        )
-    except:
-        return error(message="Falha ao realizar login!")
+    return success(
+        message="Login realizado com sucesso", token=token
+    )
 
 
 @acadonline.route("/perfil", methods=["GET"])
 def get_perfil():
-    jsession = request.headers.get("jsession")
-    headers = {"cookie": f"JSESSIONID={jsession};"}
+    token = request.headers.get("x-api-token")
 
-    perfil_page = requests.get(acadonline_urls["perfil_get"], headers=headers)
-    perfil_raw = [
-        value.find("td", "value")
-        .text.replace("\r", "")
-        .replace("\n", "")
-        .replace("\t", "")
-        .replace("/\s\s+/", "")
-        .strip()
-        for value in BeautifulSoup(perfil_page.content, features="lxml")("tr", "prop")
-    ]
-
-    perfil = Perfil(*[field for field in perfil_raw]).__dict__
+    perfil = acadonline_repository.get_perfil(token)
 
     return success(
-        message="Perfil capturado com sucesso!", token=jsession, perfil=perfil
+        message="Perfil capturado com sucesso!", token=token, perfil=perfil
     )
 
 
 @acadonline.route("/perfil", methods=["POST"])
 def set_perfil():
-    jsession = request.headers.get("jsession")
-    headers = {"cookie": f"JSESSIONID={jsession};"}
-
-    if not request.json:
-        return error(message="Requisição inválida!")
-
     data = request.get_json()
+    token = request.headers.get("x-api-token")
 
-    fields = [
-        "bairro",
-        "cep",
-        "cidade",
-        "complemento",
-        "ddd",
-        "email",
-        "id",
-        "logradouro",
-        "numeroTelefone",
-        "numero_residencia",
-        "uf",
-        "url_lattes",
-    ]
+    acadonline_repository.set_perfil(token, data)
 
-    # try:
-    perfil = {field: data[field] for field in fields}
-    perfil["id"] = "72403"
-    perfil["_action_update"] = "Alterar"
-
-    update_perfil = requests.post(
-        acadonline_urls["perfil_set"], perfil, headers=headers
+    return success(
+        message="Perfil atualizado com sucesso", token=token
     )
-
-    return success(message="Perfil atualizado com sucesso", token=jsession)
-    # except:
-    # return error(message="Falha ao realizar atualização!")
 
 
 @acadonline.route("/photo", methods=["POST"])
 def set_photo():
     pass
-
-
-# censo
 
 
 @acadonline.route("/password", methods=["POST"])
@@ -165,9 +108,9 @@ def get_grades():
     grades_page = requests.get(acadonline_urls["grades"], headers=headers)
 
     grades_raw = [
-        [cell.text for cell in row("td")]
-        for row in BeautifulSoup(grades_page.content, features="lxml")("tr")
-    ][1:]
+                     [cell.text for cell in row("td")]
+                     for row in BeautifulSoup(grades_page.content, features="lxml")("tr")
+                 ][1:]
     grades = Grade(grades_raw).__dict__
 
     return success(
