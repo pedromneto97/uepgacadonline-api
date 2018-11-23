@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, make_response
 
 from app.repositories import acadonline_repository
 
@@ -14,9 +14,15 @@ def authenticate():
 
     token = acadonline_repository.authenticate(login, password)
 
-    return success(
-        message="Login realizado com sucesso", token=token
+    response = make_response(
+        success(
+            message="Login realizado com sucesso", token=token
+        )
     )
+
+    response.headers["x-api-token"] = token
+
+    return response
 
 
 @acadonline_blueprint.route("/perfil", methods=["GET"])
