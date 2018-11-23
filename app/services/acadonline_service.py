@@ -100,7 +100,7 @@ def get_grades(token):
         headers=_get_headers(token)
     )
 
-    grades = _parse_grades(grades_page)
+    grades = _parse_grades(grades_page)["disciplines"]
 
     return grades
 

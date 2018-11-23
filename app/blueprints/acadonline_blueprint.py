@@ -76,12 +76,15 @@ def get_documents():
 def get_grades():
     token = request.headers.get("x-api-token")
 
-    grades = acadonline_repository.get_grades(token)
+    grades, general_mean, general_absences, general_frequency = acadonline_repository.get_grades_with_info(token)
 
     return success(
         message="Notas capturadas com sucesso!",
         token=token,
-        grades=grades["disciplines"],
+        grades=grades,
+        generalMean=general_mean,
+        generalAbsences=general_absences,
+        generalFrequency=general_frequency
     )
 
 
