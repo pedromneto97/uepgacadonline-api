@@ -8,9 +8,11 @@ acadonline_blueprint = Blueprint("acadonline", __name__, url_prefix="/acadonline
 
 
 @acadonline_blueprint.route("/login", methods=["POST"])
-def login():
-    data = request.get_json()
-    token = acadonline_repository.authenticate(data)
+def authenticate():
+    login = request.form.get('login')
+    password = request.form.get('password')
+
+    token = acadonline_repository.authenticate(login, password)
 
     return success(
         message="Login realizado com sucesso", token=token

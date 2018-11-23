@@ -1,7 +1,9 @@
 from app.services import acadonline_service
 
 
-def authenticate(data):
+def authenticate(login, password):
+    data = {"login": login, "password": password}
+
     return acadonline_service.authenticate(data)
 
 
