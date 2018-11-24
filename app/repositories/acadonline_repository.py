@@ -23,46 +23,57 @@ def remember_password(token):
     return acadonline_service.remember_password(token)
 
 
-def get_grades(token):
-    return acadonline_service.get_grades(token)
+def get_grade(token):
+    grades = {
+        "disciplines": acadonline_service.get_disciplines(token)
+    }
+
+    return grades
 
 
-def get_grades_with_info(token):
-    grades = acadonline_service.get_grades(token)
+def get_grade_with_info(token):
+    disciplines = acadonline_service.get_disciplines(token)
 
     general_mean = 0
     general_absences = 0
     general_frequency = 0
 
-    total_grades = len(grades)
-    total_valid_grades = 0
+    total_disciplines = len(disciplines)
+    total_valid_disciplines = 0
 
-    for grade in grades:
-        general_absences += grade["absences"]
-        general_frequency += grade["frequency"]
+    for discipline in disciplines:
+        general_absences += discipline["absences"]
+        general_frequency += discipline["frequency"]
 
-        grade_mean = 0
+        discipline_mean = 0
         len_mean = 0
 
-        grades_fields = ["grade1", "grade2", "gradeE"]
+        discipline_grade_fields = ["grade1", "grade2", "gradeE"]
 
-        for grade_field in grades_fields:
-            if grade[grade_field] is not None:
-                grade_mean += grade[grade_field]
+        for discipline_grade_field in discipline_grade_fields:
+            if discipline[discipline_grade_field] is not None:
+                discipline_mean += discipline[discipline_grade_field]
                 len_mean += 1
 
         if len_mean == 0:
             continue
 
-        grade_mean = grade_mean / len_mean if len_mean > 0 else 0
-        general_mean += grade_mean
+        discipline_mean = discipline_mean / len_mean if len_mean > 0 else 0
+        general_mean += discipline_mean
 
-        total_valid_grades += 1
+        total_valid_disciplines += 1
 
-    general_mean = general_mean / total_valid_grades if total_valid_grades > 0 else 0
-    general_frequency = general_frequency / total_grades if total_grades > 0 else 0
+    general_mean = general_mean / total_valid_disciplines if total_valid_disciplines > 0 else 0
+    general_frequency = general_frequency / total_disciplines if total_disciplines > 0 else 0
 
-    return grades, general_mean, general_absences, general_frequency
+    grades = {
+        "disciplines": disciplines,
+        "generalAbsences": general_absences,
+        "generalFrequency": general_frequency,
+        "generalMean": general_mean
+    }
+
+    return grades
 
 
 def get_additional_activities(token):

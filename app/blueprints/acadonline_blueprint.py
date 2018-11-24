@@ -18,7 +18,9 @@ def authenticate():
 
     response = make_response(
         success(
-            message="Login realizado com sucesso", perfil=perfil, token=token
+            message="Login realizado com sucesso",
+            perfil=perfil,
+            token=token
         )
     )
 
@@ -42,12 +44,15 @@ def get_perfil():
     return conditional_response(
         perfil,
         success(
-            message="Perfil capturado com sucesso!", token=token, perfil=perfil
+            message="Perfil capturado com sucesso!",
+            perfil=perfil,
+            token=token
         ),
         error(
             message="Perfil inválido"
         )
     )
+
 
 @acadonline_blueprint.route("/perfil", methods=["POST"])
 def set_perfil():
@@ -93,41 +98,26 @@ def get_documents():
     pass
 
 
-@acadonline_blueprint.route("/grades", methods=["GET"])
-def get_grades():
+@acadonline_blueprint.route("/grade", methods=["GET"])
+def get_grade():
     token = request.headers.get("x-api-token")
     extra = request.args.get("extra")
 
-    if extra:
-        grades, general_mean, general_absences, general_frequency = acadonline_repository.get_grades_with_info(token)
+    grade = acadonline_repository.get_grade_with_info(token) if extra else acadonline_repository.get_grade(token)
 
-        response = success(
-            message="Notas capturadas com sucesso!",
-            token=token,
-            grades=grades,
-            generalMean=general_mean,
-            generalAbsences=general_absences,
-            generalFrequency=general_frequency
-        )
-    else:
-        grades = acadonline_repository.get_grades(token)
-
-        response = success(
-            message="Notas capturadas com sucesso!",
-            token=token,
-            grades=grades
-        )
-
-    condition = len(grades) > 0
+    condition = len(grade["disciplines"]) > 0
 
     return conditional_response(
         condition,
-        response,
+        success(
+            message="Notas capturadas com sucesso!",
+            token=token,
+            grade=grade
+        ),
         error(
             message="Erro ao capturar notas"
         )
     )
-
 
 
 @acadonline_blueprint.route("/activities", methods=["GET"])

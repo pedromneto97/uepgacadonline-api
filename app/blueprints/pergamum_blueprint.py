@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 from utils.urls import pergamum_urls
 from utils.response import success, error
 
-from app.models.book import Book
 
 pergamum_blueprint = Blueprint("pergamum", __name__, url_prefix="/pergamum")
 

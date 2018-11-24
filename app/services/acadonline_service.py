@@ -94,13 +94,13 @@ def remember_password(token):
     return request_remember_page
 
 
-def get_grades(token):
-    grades_page = requests.get(
+def get_disciplines(token):
+    disciplines_page = requests.get(
         endpoints.acadonline.grades,
         headers=_get_headers(token)
     )
 
-    grades = _parse_grades(grades_page)["disciplines"]
+    grades = _parse_disciplines(disciplines_page)["disciplines"]
 
     return grades
 
@@ -128,18 +128,18 @@ def _parse_additional_activities(activities_page):
     return activities
 
 
-def _parse_grades(grades_page):
+def _parse_disciplines(grades_page):
     try:
-        grades_raw = [
+        disciplines_raw = [
                          [cell.text for cell in row("td")]
                          for row in BeautifulSoup(grades_page.content, features="lxml")("tr")
                      ][1:]
 
-        grades = Grade(grades_raw).__dict__
+        disciplines = Grade(disciplines_raw).__dict__
     except:
-        grades = None
+        disciplines = None
 
-    return grades
+    return disciplines
 
 
 def _parse_perfil(perfil_page):
