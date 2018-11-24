@@ -2,7 +2,7 @@ from flask import Blueprint, request, make_response
 
 from app.repositories import acadonline_repository
 
-from utils.messages import success, error
+from utils.response import success, error, conditional_response
 
 acadonline_blueprint = Blueprint("acadonline", __name__, url_prefix="/acadonline")
 
@@ -14,15 +14,23 @@ def authenticate():
 
     token = acadonline_repository.authenticate(login, password)
 
+    perfil = acadonline_repository.get_perfil(token)
+
     response = make_response(
         success(
-            message="Login realizado com sucesso", token=token
+            message="Login realizado com sucesso", perfil=perfil, token=token
         )
     )
 
     response.headers["x-api-token"] = token
 
-    return response
+    return conditional_response(
+        perfil,
+        response,
+        error(
+            message="Usuário inválido"
+        )
+    )
 
 
 @acadonline_blueprint.route("/perfil", methods=["GET"])
@@ -31,10 +39,15 @@ def get_perfil():
 
     perfil = acadonline_repository.get_perfil(token)
 
-    return success(
-        message="Perfil capturado com sucesso!", token=token, perfil=perfil
+    return conditional_response(
+        perfil,
+        success(
+            message="Perfil capturado com sucesso!", token=token, perfil=perfil
+        ),
+        error(
+            message="Perfil inválido"
+        )
     )
-
 
 @acadonline_blueprint.route("/perfil", methods=["POST"])
 def set_perfil():
@@ -83,17 +96,38 @@ def get_documents():
 @acadonline_blueprint.route("/grades", methods=["GET"])
 def get_grades():
     token = request.headers.get("x-api-token")
+    extra = request.args.get("extra")
 
-    grades, general_mean, general_absences, general_frequency = acadonline_repository.get_grades_with_info(token)
+    if extra:
+        grades, general_mean, general_absences, general_frequency = acadonline_repository.get_grades_with_info(token)
 
-    return success(
-        message="Notas capturadas com sucesso!",
-        token=token,
-        grades=grades,
-        generalMean=general_mean,
-        generalAbsences=general_absences,
-        generalFrequency=general_frequency
+        response = success(
+            message="Notas capturadas com sucesso!",
+            token=token,
+            grades=grades,
+            generalMean=general_mean,
+            generalAbsences=general_absences,
+            generalFrequency=general_frequency
+        )
+    else:
+        grades = acadonline_repository.get_grades(token)
+
+        response = success(
+            message="Notas capturadas com sucesso!",
+            token=token,
+            grades=grades
+        )
+
+    condition = len(grades) > 0
+
+    return conditional_response(
+        condition,
+        response,
+        error(
+            message="Erro ao capturar notas"
+        )
     )
+
 
 
 @acadonline_blueprint.route("/activities", methods=["GET"])

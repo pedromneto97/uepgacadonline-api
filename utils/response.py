@@ -7,3 +7,7 @@ def success(**kwargs):
 
 def error(**kwargs):
     return jsonify({"status": False, **kwargs})
+
+
+def conditional_response(condition, success_response, error_response):
+    return success_response if condition else error_response

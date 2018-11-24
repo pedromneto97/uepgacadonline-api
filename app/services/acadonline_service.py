@@ -129,28 +129,34 @@ def _parse_additional_activities(activities_page):
 
 
 def _parse_grades(grades_page):
-    grades_raw = [
-                     [cell.text for cell in row("td")]
-                     for row in BeautifulSoup(grades_page.content, features="lxml")("tr")
-                 ][1:]
+    try:
+        grades_raw = [
+                         [cell.text for cell in row("td")]
+                         for row in BeautifulSoup(grades_page.content, features="lxml")("tr")
+                     ][1:]
 
-    grades = Grade(grades_raw).__dict__
+        grades = Grade(grades_raw).__dict__
+    except:
+        grades = None
 
     return grades
 
 
 def _parse_perfil(perfil_page):
-    perfil_raw = [
-        value.find("td", "value")
-            .text.replace("\r", "")
-            .replace("\n", "")
-            .replace("\t", "")
-            .replace("/\s\s+/", "")
-            .strip()
-        for value in BeautifulSoup(perfil_page.content, features="lxml")("tr", "prop")
-    ]
+    try:
+        perfil_raw = [
+            value.find("td", "value")
+                .text.replace("\r", "")
+                .replace("\n", "")
+                .replace("\t", "")
+                .replace("/\s\s+/", "")
+                .strip()
+            for value in BeautifulSoup(perfil_page.content, features="lxml")("tr", "prop")
+        ]
 
-    perfil = Perfil(*[field for field in perfil_raw]).__dict__
+        perfil = Perfil(*[field for field in perfil_raw]).__dict__
+    except:
+        perfil = None
 
     return perfil
 

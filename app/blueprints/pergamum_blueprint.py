@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from utils.urls import pergamum_urls
-from utils.messages import success, error
+from utils.response import success, error
 
 from app.models.book import Book
 

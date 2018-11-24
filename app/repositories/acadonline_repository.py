@@ -34,6 +34,7 @@ def get_grades_with_info(token):
     general_absences = 0
     general_frequency = 0
 
+    total_grades = len(grades)
     total_valid_grades = 0
 
     for grade in grades:
@@ -58,8 +59,8 @@ def get_grades_with_info(token):
 
         total_valid_grades += 1
 
-    general_mean = general_mean / total_valid_grades
-    general_frequency = general_frequency / len(grades)
+    general_mean = general_mean / total_valid_grades if total_valid_grades > 0 else 0
+    general_frequency = general_frequency / total_grades if total_grades > 0 else 0
 
     return grades, general_mean, general_absences, general_frequency
 
