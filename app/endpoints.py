@@ -16,3 +16,7 @@ pergamum = Map({
     "auth": "https://sistemas.uepg.br/pergamum///biblioteca/index.php",
     "search": "https://sistemas.uepg.br/pergamum///biblioteca/index.php",
 })
+
+ru = Map({
+    "menu": "https://sistemas.uepg.br/producao/pro-reitorias/proad/diser/ru/cardapio/cardapio_semanal.php"
+})
