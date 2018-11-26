@@ -3,13 +3,13 @@ import locale
 from dataclasses import dataclass
 from typing import List
 
-from app.models.news import News
+from app.models.item_news import ItemNews
 
 
 @dataclass
 class DailyNews:
     date: datetime.datetime
-    daily_news: List[News]
+    daily_news: List[ItemNews]
 
     def __post_init__(self):
         if type(self.date) == str:

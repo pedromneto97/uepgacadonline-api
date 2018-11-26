@@ -22,5 +22,6 @@ ru = Map({
 })
 
 portal = Map({
-    "news": "https://portal.uepg.br/selnoticia.php"
+    "news_item": "https://portal.uepg.br/selnoticia.php",
+    "news": "https://portal.uepg.br/noticias.php"
 })

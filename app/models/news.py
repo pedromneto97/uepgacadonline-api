@@ -1,15 +1,19 @@
 import datetime
+import locale
 from dataclasses import dataclass
 
 
 @dataclass
 class News:
-    cod: str
-    time: datetime.datetime
     title: str
+    author: str
+    content: str
+    created_at: datetime.datetime
+    updated_at: datetime.datetime
 
     def __post_init__(self):
-        self.cod = self.cod.split("?id=", 1)[1]
-
-        if(type(self.time) == str):
-            self.time = datetime.datetime.strptime(self.time, '%Hh%M')
+        pass
+        # if type(self.date) == str:
+        # locale.setlocale(locale.LC_ALL, 'pt_BR')
+        # self.created_at = datetime.datetime.strptime(self.created_at, '%d %b %Y')
+        # self.updated_at = datetime.datetime.strptime(self.updated_at, '%d %b %Y')

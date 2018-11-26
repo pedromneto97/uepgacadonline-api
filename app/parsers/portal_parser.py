@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 
 from app.models.group_news import GroupNews
-from app.models.news import News
+from app.models.item_news import ItemNews
 
 
 def parse_news(news_page):
@@ -9,7 +9,7 @@ def parse_news(news_page):
         [
             value.find("div", "data").text,
             [
-                News(
+                ItemNews(
                     p.find("a")['href'],
                     p.find("span", "hora").text,
                     p.find("a").text
