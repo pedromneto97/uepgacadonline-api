@@ -20,3 +20,7 @@ pergamum = Map({
 ru = Map({
     "menu": "https://sistemas.uepg.br/producao/pro-reitorias/proad/diser/ru/cardapio/cardapio_semanal.php"
 })
+
+portal = Map({
+    "news": "https://portal.uepg.br/selnoticia.php"
+})

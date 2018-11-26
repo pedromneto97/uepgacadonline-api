@@ -1,10 +1,7 @@
 import requests
-from bs4 import BeautifulSoup
 
 from app import endpoints
-from app.models.activity import Activity
-from app.models.grade import Grade
-from app.models.perfil import Perfil
+from app.parsers import acadonline_parser
 
 
 def authenticate(data):
@@ -17,7 +14,11 @@ def authenticate(data):
 
     headers, token = _get_cookies(requests.get(endpoints.acadonline.home))
 
-    requests.post(endpoints.acadonline.auth, user, headers=headers)
+    requests.post(
+        endpoints.acadonline.auth,
+        user,
+        headers=headers
+    )
 
     return token
 
@@ -28,7 +29,7 @@ def get_perfil(token):
         headers=_get_headers(token)
     )
 
-    perfil = _parse_perfil(perfil_page)
+    perfil = acadonline_parser.parse_perfil(perfil_page)
 
     return perfil
 
@@ -100,7 +101,7 @@ def get_disciplines(token):
         headers=_get_headers(token)
     )
 
-    grades = _parse_disciplines(disciplines_page)["disciplines"]
+    grades = acadonline_parser.parse_disciplines(disciplines_page)["disciplines"]
 
     return grades
 
@@ -111,54 +112,9 @@ def get_additional_activities(token):
         headers=_get_headers(token)
     )
 
-    activities = _parse_additional_activities(activities_page)
+    activities = acadonline_parser.parse_additional_activities(activities_page)
 
     return activities
-
-
-def _parse_additional_activities(activities_page):
-    activities_raw = [
-        [cell.text for cell in row("td")]
-        for row in BeautifulSoup(activities_page.content, features="lxml")("tr", "even")
-    ]
-    activities = [
-        Activity(*[field for field in activity_raw]).__dict__
-        for activity_raw in activities_raw
-    ]
-    return activities
-
-
-def _parse_disciplines(grades_page):
-    try:
-        disciplines_raw = [
-                         [cell.text for cell in row("td")]
-                         for row in BeautifulSoup(grades_page.content, features="lxml")("tr")
-                     ][1:]
-
-        disciplines = Grade(disciplines_raw).__dict__
-    except:
-        disciplines = None
-
-    return disciplines
-
-
-def _parse_perfil(perfil_page):
-    try:
-        perfil_raw = [
-            value.find("td", "value")
-                .text.replace("\r", "")
-                .replace("\n", "")
-                .replace("\t", "")
-                .replace("/\s\s+/", "")
-                .strip()
-            for value in BeautifulSoup(perfil_page.content, features="lxml")("tr", "prop")
-        ]
-
-        perfil = Perfil(*[field for field in perfil_raw]).__dict__
-    except:
-        perfil = None
-
-    return perfil
 
 
 def _get_cookies(response):

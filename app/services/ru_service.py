@@ -1,9 +1,7 @@
 import requests
-from bs4 import BeautifulSoup
-import re
 
 from app import endpoints
-from app.models.weekly_menu import WeeklyMenu
+from app.parsers import ru_parser
 
 
 def weekly_menu(data):
@@ -19,22 +17,8 @@ def weekly_menu(data):
         params
     )
 
-    menu = _parse_menu(menu_page)
+    menu = ru_parser.parse_menu(menu_page)
 
     return menu
 
 
-def _parse_menu(menu_page):
-    day_regex = re.compile('.*dia\d.*')
-
-    menu_raw = [
-        [
-            value.find("div", "dia_extenso").text,
-            value.find("div", "dia_semana_extenso").text,
-            [cell.text for cell in value("li")]
-        ]
-        for value in BeautifulSoup(menu_page.content, features="lxml").find_all("div", {"class": day_regex})
-    ]
-    menu = WeeklyMenu(menu_raw).__dict__
-
-    return menu
