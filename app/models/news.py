@@ -6,6 +6,7 @@ from dataclasses import dataclass
 @dataclass
 class News:
     title: str
+    subtitle: str
     author: str
     content: str
     created_at: datetime.datetime

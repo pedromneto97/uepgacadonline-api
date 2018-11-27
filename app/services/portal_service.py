@@ -2,7 +2,7 @@ import requests
 
 from app import endpoints
 
-from app.parsers.portal_parser import parse_news
+from app.parsers.portal_parser import parse_news_item, parse_news
 
 
 def news_item(date):
@@ -16,7 +16,7 @@ def news_item(date):
         params
     )
 
-    group = parse_news(news_page)
+    group = parse_news_item(news_page)
 
     return group["news"]
 
@@ -31,7 +31,6 @@ def news(cod):
         params
     )
 
-    print(news_page.content)
+    news = parse_news(news_page)
 
-    return True
-
+    return news

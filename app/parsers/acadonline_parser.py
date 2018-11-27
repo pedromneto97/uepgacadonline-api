@@ -6,14 +6,18 @@ from app.models.perfil import Perfil
 
 
 def parse_additional_activities(activities_page):
-    activities_raw = [
-        [cell.text for cell in row("td")]
-        for row in BeautifulSoup(activities_page.content, features="lxml")("tr", "even")
-    ]
-    activities = [
-        Activity(*[field for field in activity_raw]).__dict__
-        for activity_raw in activities_raw
-    ]
+    try:
+        activities_raw = [
+            [cell.text for cell in row("td")]
+            for row in BeautifulSoup(activities_page.content, features="lxml")("tr", "even")
+        ]
+        activities = [
+            Activity(*[field for field in activity_raw]).__dict__
+            for activity_raw in activities_raw
+        ]
+    except:
+        activities = None
+
     return activities
 
 
