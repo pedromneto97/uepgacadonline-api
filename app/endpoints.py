@@ -12,8 +12,8 @@ acadonline = Map({
 })
 
 pergamum = Map({
-    "home": "https://sistemas.uepg.br/pergamum/biblioteca_s/meu_pergamum/index.php?flag=index.php",
-    "auth": "https://sistemas.uepg.br/pergamum///biblioteca/index.php",
+    "home": "https://sistemas.uepg.br/pergamum/biblioteca/index.php",
+    "auth": "https://sistemas.uepg.br/pergamum/biblioteca_s/php/login_usu.php",
     "search": "https://sistemas.uepg.br/pergamum///biblioteca/index.php",
 })
 

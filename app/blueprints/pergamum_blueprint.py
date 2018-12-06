@@ -6,20 +6,20 @@ from bs4 import BeautifulSoup
 from utils.urls import pergamum_urls
 from utils.response import success, error
 
+from app.repositories import pergamum_repository
 
 pergamum_blueprint = Blueprint("pergamum", __name__, url_prefix="/pergamum")
 
 
 @pergamum_blueprint.route("/login", methods=["POST"])
 def login():
-    user = {"rs": "ajax_valida_acesso_novo"}
+    login = request.form.get('login')
+    password = request.form.get('password')
 
-    auth = requests.request("POST", pergamum_urls["auth"], data=user)
-    headers_raw = dict((key, value) for key, value in auth.cookies.items())
-    print(headers_raw)
+    token = pergamum_repository.authenticate(login, password)
 
     return success(
-        message="Login realizado com sucesso", token=headers_raw["PHPSESSID"]
+        message="Login realizado com sucesso", token=token
     )
 
 
@@ -29,8 +29,6 @@ def home():
     headers = {"cookie": f"PHPSESSID={phpsessid};"}
 
     home_page = requests.get(pergamum_urls["home"], headers=headers)
-
-    print(home_page.content)
 
     return success(message="Meu pergamum capturado com sucesso!", token=phpsessid)
 

@@ -1,8 +1,8 @@
 from app.services import pergamum_service
 
 
-def authenticate():
-    return pergamum_service.authenticate()
+def authenticate(login, password):
+    return pergamum_service.authenticate(login, password)
 
 
 def home():

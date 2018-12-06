@@ -10,7 +10,7 @@ acadonline_urls = {
 }
 
 pergamum_urls = {
-    "home": "http://sistemas.uepg.br/pergamum/biblioteca_s/meu_pergamum/index.php?flag=index.php",
+    "home": "https://sistemas.uepg.br/pergamum/biblioteca/index.php",
     "auth": "http://sistemas.uepg.br/pergamum///biblioteca/index.php",
     "search": "http://sistemas.uepg.br/pergamum///biblioteca/index.php",
 }
