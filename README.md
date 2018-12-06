@@ -63,58 +63,78 @@ A rota de cardápio do ru por exemplo, retorna um json formatado da seguinte for
 {
     "message": "Cardápio retornado com sucesso",
     "status": true,
-    "weekly_menu": {
-        "daily_menus": [
-            {
-                "date": "Tue, 27 Nov 2018 00:00:00 GMT",
-                "day": "Terça-feira",
-                "food": [
-                    "Arroz",
-                    "Feijão",
-                    "Pepino",
-                    "Strogonoff de frango",
-                    "Batata palha"
-                ]
-            },
-            {
-                "date": "Wed, 28 Nov 2018 00:00:00 GMT",
-                "day": "Quarta-feira",
-                "food": [
-                    "Arroz",
-                    "Feijão",
-                    "Escarola",
-                    "Bisteca assada",
-                    "Farofa de legumes",
-                    "Banana"
-                ]
-            },
-            {
-                "date": "Thu, 29 Nov 2018 00:00:00 GMT",
-                "day": "Quinta-feira",
-                "food": [
-                    "Arroz",
-                    "Feijão",
-                    "Beterraba",
-                    "Bife ao molho de tomate",
-                    "Polenta",
-                    "Gelatina"
-                ]
-            },
-            {
-                "date": "Fri, 30 Nov 2018 00:00:00 GMT",
-                "day": "Sexta-feira",
-                "food": [
-                    "Arroz",
-                    "Feijão",
-                    "repolho com cenoura",
-                    "Linguiça Assada",
-                    "Macarrão",
-                    "Pêssego"
-                ]
-            }
-        ]
-    }
+    "weekly_menu": [
+        {
+            "date": "Tue, 27 Nov 2018 00:00:00 GMT",
+            "day": "Terça-feira",
+            "food": [
+                "Arroz",
+                "Feijão",
+                "Pepino",
+                "Strogonoff de frango",
+                "Batata palha"
+            ]
+        },
+        {
+            "date": "Wed, 28 Nov 2018 00:00:00 GMT",
+            "day": "Quarta-feira",
+            "food": [
+                "Arroz",
+                "Feijão",
+                "Escarola",
+                "Bisteca assada",
+                "Farofa de legumes",
+                "Banana"
+            ]
+        },
+        {
+            "date": "Thu, 29 Nov 2018 00:00:00 GMT",
+            "day": "Quinta-feira",
+            "food": [
+                "Arroz",
+                "Feijão",
+                "Beterraba",
+                "Bife ao molho de tomate",
+                "Polenta",
+                "Gelatina"
+            ]
+        },
+        {
+            "date": "Fri, 30 Nov 2018 00:00:00 GMT",
+            "day": "Sexta-feira",
+            "food": [
+                "Arroz",
+                "Feijão",
+                "repolho com cenoura",
+                "Linguiça Assada",
+                "Macarrão",
+                "Pêssego"
+            ]
+        }
+    ]
 }
 ```
 
-De fácil renderização como uma API tradicional.
+Outro exemplo: Rota de retorno de livros emprestados da biblioteca:
+
+```json
+{
+    "loans": [
+        {
+            "address": "https://sistemas.uepg.br/pergamum/biblioteca/index.php?codAcervo=193457",
+            "currentRenewalsNumber": 1,
+            "fine": "0",
+            "limitDate": "Thu, 13 Dec 2018 00:00:00 GMT",
+            "maxRenewalNumber": 6,
+            "name": "Computação quântica e informação quântica / 2005 - Livros",
+            "renew": 127440,
+            "title": "NIELSEN, Michael A. <b> Computação quântica e informação quântica. </b>  Porto Alegre: Bookman, 2005. 733 p. ISBN 85-363-0554-1. "
+        }
+    ],
+    "message": "Livros retornados com sucesso",
+    "status": true,
+    "token": "vhpnd1onv29dpqeokhpl0a81c0"
+}
+```
+
+Api em desenvolvimento
