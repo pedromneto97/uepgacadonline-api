@@ -13,8 +13,11 @@ acadonline = Map({
 
 pergamum = Map({
     "home": "https://sistemas.uepg.br/pergamum/biblioteca/index.php",
-    "auth": "https://sistemas.uepg.br/pergamum/biblioteca_s/php/login_usu.php",
+    "auth": "https://sistemas.uepg.br/pergamum///biblioteca/index.php?rs=ajax_valida_acesso_novo&rst=&rsargs[]={login}&rsargs[]={password}",
+    "renew": "https://sistemas.uepg.br/pergamum///biblioteca_s/meu_pergamum/index.php?rs=ajax_renova&rsrnd=1508281073663&rsargs[]={book}&rsargs[]=4&rsargs[]=4&rsargs[]=15411",
     "search": "https://sistemas.uepg.br/pergamum///biblioteca/index.php",
+    "validate": "https://sistemas.uepg.br/pergamum/biblioteca_s/php/login_usu.php?flag=index.php",
+    "books": "https://sistemas.uepg.br/pergamum/biblioteca_s/meu_pergamum/index.php?flag=index.php"
 })
 
 ru = Map({

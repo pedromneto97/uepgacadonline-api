@@ -50,3 +50,26 @@ def search():
     print(books_raw)
 
     return success(message="Livros retornados com sucesso!", token=phpsessid)
+
+
+@pergamum_blueprint.route("/books", methods=["GET"])
+def books():
+    token = request.headers.get("phpsessid")
+
+    loans = pergamum_repository.books(token)
+
+    return success(
+        message="Livros retornados com sucesso", token=token, loans=loans
+    )
+
+
+@pergamum_blueprint.route("/renew", methods=["POST"])
+def renew():
+    book = request.form.get('book')
+    token = request.headers.get("phpsessid")
+
+    pergamum_repository.renew(token, book)
+
+    return success(
+        message="Livro renovado com sucesso", token=token
+    )

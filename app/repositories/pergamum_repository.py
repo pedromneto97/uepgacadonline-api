@@ -11,3 +11,11 @@ def home():
 
 def search():
     return pergamum_service.search()
+
+
+def books(token):
+    return pergamum_service.books(token)
+
+
+def renew(token, book):
+    return pergamum_service.renew(token, book)
