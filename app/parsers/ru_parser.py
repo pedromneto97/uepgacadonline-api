@@ -17,7 +17,7 @@ def parse_menu(menu_page):
             ]
             for value in BeautifulSoup(menu_page.content, features="lxml").find_all("div", {"class": day_regex})
         ]
-        menu = WeeklyMenu(menu_raw).__dict__
+        menu = WeeklyMenu(menu_raw).__dict__["daily_menus"]
     except:
         menu = None
 
