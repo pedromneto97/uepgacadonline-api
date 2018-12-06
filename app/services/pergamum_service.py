@@ -3,7 +3,7 @@ import requests
 from app import endpoints
 from bs4 import BeautifulSoup
 
-from app.models.loans import Loans
+from app.parsers.pergamum_parser import parse_books
 
 
 def authenticate(login, password):
@@ -38,23 +38,9 @@ def books(token):
         headers=_get_headers(token)
     )
 
-    books_raw = [
-        [
-            row.find_all("td")[1].find("a").text.strip(),
-            row.find_all("td")[1].find("a")["title"],
-            row.find_all("td")[1].find("a")["href"],
-            row.find_all("td")[2].text,
-            row.find_all("td")[4].find("center").find("input")["onclick"]
-        ]
-        for row in BeautifulSoup(books_page.content, features="lxml") \
-                       .find("div", {"class": "c1"}) \
-                       .find("table").find_all("tr")[1:]
+    books = parse_books(books_page)
 
-    ]
-
-    books = Loans(books_raw).__dict__
-
-    return books["loans"]
+    return books
 
 
 def renew(token, book):
