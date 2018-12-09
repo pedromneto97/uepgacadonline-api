@@ -13,7 +13,8 @@ def menu():
     shift = request.args.get("shift")
     next = request.args.get("next")
 
-    weekly_menu = ru_repository.weekly_menu(campus, shift, next)
+    #weekly_menu = ru_repository.weekly_menu(campus, shift, next)
+    weekly_menu = ru_repository.weekly_menu_mock()
 
     return success(
         message="Cardápio retornado com sucesso",
