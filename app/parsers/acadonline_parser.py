@@ -4,6 +4,8 @@ from app.models.activity import Activity
 from app.models.grade import Grade
 from app.models.perfil import Perfil
 
+from collections import ChainMap
+
 
 def parse_additional_activities(activities_page):
     try:
@@ -21,7 +23,7 @@ def parse_additional_activities(activities_page):
     return activities
 
 
-def parse_disciplines(grades_page):
+def parse_grade(grades_page):
     try:
         disciplines_raw = [
                               [cell.text for cell in row("td")]
@@ -29,6 +31,26 @@ def parse_disciplines(grades_page):
                           ][1:]
 
         disciplines = Grade(disciplines_raw).__dict__
+    except:
+        disciplines = None
+
+    return disciplines
+
+
+def parse_disciplines(disciplines_page):
+    try:
+        disciplines_raw = [
+                              [cell.text for cell in row("td")]
+                              for row in BeautifulSoup(disciplines_page.content, features="lxml")("tr")
+                          ][1:]
+
+        disciplines = [
+            {"{cod}-{year}".format(cod=row[0], year=row[3]): row[1]}
+            for row in disciplines_raw
+        ]
+
+        #disciplines = dict(ChainMap(*disciplines))
+
     except:
         disciplines = None
 

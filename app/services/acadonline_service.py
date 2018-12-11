@@ -95,15 +95,25 @@ def remember_password(token):
     return request_remember_page
 
 
+def get_grade(token):
+    grade_page = requests.get(
+        endpoints.acadonline.grades,
+        headers=_get_headers(token)
+    )
+
+    grades = acadonline_parser.parse_grade(grade_page)["disciplines"]
+
+    return grades
+
 def get_disciplines(token):
     disciplines_page = requests.get(
         endpoints.acadonline.grades,
         headers=_get_headers(token)
     )
 
-    grades = acadonline_parser.parse_disciplines(disciplines_page)["disciplines"]
+    disciplines = acadonline_parser.parse_disciplines(disciplines_page)
 
-    return grades
+    return disciplines
 
 
 def get_additional_activities(token):

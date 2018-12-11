@@ -42,6 +42,9 @@ def books(token):
 
     return books
 
+def collection():
+    pass
+
 
 def renew(token, book):
     requests.get(

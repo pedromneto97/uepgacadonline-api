@@ -17,7 +17,8 @@ pergamum = Map({
     "renew": "https://sistemas.uepg.br/pergamum///biblioteca_s/meu_pergamum/index.php?rs=ajax_renova&rsrnd=1508281073663&rsargs[]={book}&rsargs[]=4&rsargs[]=4&rsargs[]=15411",
     "search": "https://sistemas.uepg.br/pergamum///biblioteca/index.php",
     "validate": "https://sistemas.uepg.br/pergamum/biblioteca_s/php/login_usu.php?flag=index.php",
-    "books": "https://sistemas.uepg.br/pergamum/biblioteca_s/meu_pergamum/index.php?flag=index.php"
+    "books": "https://sistemas.uepg.br/pergamum/biblioteca_s/meu_pergamum/index.php?flag=index.php",
+    "collection": "https://sistemas.uepg.br/pergamum///biblioteca/index.php?rs=ajax_dados_acervo&rst=&rsrnd=1544500507731&rsargs[]={book}&rsargs[]="
 })
 
 ru = Map({

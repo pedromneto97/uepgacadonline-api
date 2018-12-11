@@ -66,11 +66,6 @@ def set_perfil():
     )
 
 
-@acadonline_blueprint.route("/photo", methods=["POST"])
-def set_photo():
-    pass
-
-
 @acadonline_blueprint.route("/password", methods=["POST"])
 def set_password():
     data = request.get_json()
@@ -119,6 +114,26 @@ def get_grade():
         )
     )
 
+@acadonline_blueprint.route("/disciplines", methods=["GET"])
+def get_disciplines():
+    token = request.headers.get("x-api-token")
+
+    disciplines = acadonline_repository.get_disciplines(token)
+
+    condition = len(disciplines) > 0
+
+    return conditional_response(
+        condition,
+        success(
+            message="Disciplinas returnadas com sucesso!",
+            token=token,
+            disciplines=disciplines
+        ),
+        error(
+            message="Erro ao retornar disciplinas"
+        )
+    )
+
 
 @acadonline_blueprint.route("/activities", methods=["GET"])
 def get_additional_activities():
@@ -133,26 +148,4 @@ def get_additional_activities():
     )
 
 
-@acadonline_blueprint.route("/imposition", methods=["GET"])
-def imposition_of_degree():
-    pass
 
-
-@acadonline_blueprint.route("/internship", methods=["GET"])
-def internship():
-    pass
-
-
-@acadonline_blueprint.route("/downloads", methods=["GET"])
-def downloads():
-    pass
-
-
-@acadonline_blueprint.route("/download", methods=["GET"])
-def download():
-    pass
-
-
-@acadonline_blueprint.route("/contact/prograd", methods=["POST"])
-def contact_prograd():
-    pass

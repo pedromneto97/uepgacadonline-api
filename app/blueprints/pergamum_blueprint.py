@@ -3,6 +3,7 @@ from flask import Blueprint, jsonify, request
 import requests
 from bs4 import BeautifulSoup
 
+from app import endpoints
 from utils.urls import pergamum_urls
 from utils.response import success, error
 
@@ -61,6 +62,20 @@ def books():
     return success(
         message="Livros retornados com sucesso", token=token, loans=loans
     )
+
+@pergamum_blueprint.route("/book", methods=["GET"])
+def book():
+    book = request.args.get('collection')
+
+    book_page = requests.get(
+        endpoints.pergamum.collection.format(book=book)
+    )
+
+    return success(
+        message="Livro retornado com sucesso", book=str(book_page.content)
+    )
+
+
 
 
 @pergamum_blueprint.route("/renew", methods=["POST"])
