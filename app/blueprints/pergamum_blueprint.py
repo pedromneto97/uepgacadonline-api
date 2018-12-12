@@ -57,11 +57,13 @@ def search():
 def books():
     token = request.headers.get("phpsessid")
 
-    loans = pergamum_repository.books(token)
+    # loans = pergamum_repository.books(token)
+    loans = pergamum_repository.books_mock()
 
     return success(
         message="Livros retornados com sucesso", token=token, loans=loans
     )
+
 
 @pergamum_blueprint.route("/book", methods=["GET"])
 def book():
@@ -74,8 +76,6 @@ def book():
     return success(
         message="Livro retornado com sucesso", book=str(book_page.content)
     )
-
-
 
 
 @pergamum_blueprint.route("/renew", methods=["POST"])
