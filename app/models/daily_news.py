@@ -9,7 +9,7 @@ from app.models.item_news import ItemNews
 @dataclass
 class DailyNews:
     date: datetime.datetime
-    daily_news: List[ItemNews]
+    news: List[ItemNews]
 
     def __post_init__(self):
         if type(self.date) == str:

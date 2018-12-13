@@ -12,4 +12,5 @@ class ItemNews:
         self.cod = self.cod.split("?id=", 1)[1]
 
         if type(self.time) == str:
-            self.time = datetime.datetime.strptime(self.time, '%Hh%M')
+            pass
+            #self.time = datetime.datetime.strptime(self.time, '%Hh%M')

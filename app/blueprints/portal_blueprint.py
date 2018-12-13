@@ -17,7 +17,7 @@ def news_item():
 
     return success(
         message="Noticias retornadas com sucesso",
-        news=news
+        daily_news=news
     )
 
 
