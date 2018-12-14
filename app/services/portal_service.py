@@ -16,9 +16,9 @@ def news_item(date):
         params
     )
 
-    group = parse_news_item(news_page)
+    group = parse_news_item(news_page, date)
 
-    return group["news"]
+    return group
 
 
 def news(cod):

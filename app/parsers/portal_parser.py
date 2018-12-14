@@ -5,7 +5,7 @@ from app.models.item_news import ItemNews
 from app.models.news import News
 
 
-def parse_news_item(news_page):
+def parse_news_item(news_page, date):
     try:
         news_raw = [
             [
@@ -21,6 +21,7 @@ def parse_news_item(news_page):
             for value in BeautifulSoup(news_page.content, features="lxml").find_all("div", {"class": "chamada"})[1:]
         ]
         news = GroupNews(news_raw).__dict__
+        news = [new for new in news["news"] if new["date"] == date]
     except:
         news = None
 
