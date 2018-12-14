@@ -13,7 +13,8 @@ def news_item(date):
 
     news_page = requests.post(
         endpoints.portal.news_item,
-        params
+        params,
+        verify=False
     )
 
     group = parse_news_item(news_page, date)
