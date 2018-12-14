@@ -13,7 +13,8 @@ def news_item():
     date = request.args.get("date")
     date = datetime.datetime.strptime(date, '%d/%m/%Y')
 
-    news = portal_repository.news_item(date)
+    #news = portal_repository.news_item(date)
+    news = portal_repository.news_item_mock()
 
     return success(
         message="Noticias retornadas com sucesso",
