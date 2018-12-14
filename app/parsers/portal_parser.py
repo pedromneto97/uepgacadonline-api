@@ -21,7 +21,7 @@ def parse_news_item(news_page, date):
             for value in BeautifulSoup(news_page.content, features="lxml").find_all("div", {"class": "chamada"})[1:]
         ]
         news = GroupNews(news_raw).__dict__
-        news = [new for new in news["news"] if new["date"] == date]
+        news = [new for new in news["news"] if new["date"] == date][0]
     except:
         news = None
 
