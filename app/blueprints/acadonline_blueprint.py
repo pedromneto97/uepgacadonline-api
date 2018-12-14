@@ -114,6 +114,7 @@ def get_grade():
         )
     )
 
+
 @acadonline_blueprint.route("/disciplines", methods=["GET"])
 def get_disciplines():
     token = request.headers.get("x-api-token")
@@ -146,6 +147,3 @@ def get_additional_activities():
         token=token,
         activities=activities,
     )
-
-
-

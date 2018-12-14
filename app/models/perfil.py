@@ -19,7 +19,7 @@ class Perfil:
     mother_name: str
     cep: str
     address: str
-    address_number: int
+    address_number: str
     complement: str
     neighborhood: str
     city: str
@@ -48,9 +48,6 @@ class Perfil:
     first_name: str = ""
 
     def __post_init__(self):
-        if type(self.address_number) is str:
-            self.address_number = int(self.address_number)
-
         if type(self.degree) is str:
             self.degree = int(self.degree)
 
