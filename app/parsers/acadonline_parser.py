@@ -29,7 +29,6 @@ def parse_grade(grades_page):
                               [cell.text for cell in row("td")]
                               for row in BeautifulSoup(grades_page.content, features="lxml")("tr")
                           ][1:]
-
         disciplines = Grade(disciplines_raw).__dict__
     except:
         disciplines = None

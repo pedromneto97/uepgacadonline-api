@@ -9,6 +9,7 @@ acadonline = Map({
     "perfil_set": "https://sistemas.uepg.br/academicoonline/academico_pessoa/index",
     "activities": "https://sistemas.uepg.br/academicoonline/atividadeComplementar/index",
     "remember_password": "https://sistemas.uepg.br/academicoonline/recuperarSenha/index",
+    "extract": "https://sistemas.uepg.br/academicoonline/documentos/generate?reportName=ExtratoMatricula"
 })
 
 pergamum = Map({

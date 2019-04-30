@@ -4,9 +4,12 @@ from dataclasses import dataclass
 @dataclass
 class Discipline:
     cod: str
+    content: str
     name: str
     className: str
     year: int
+    plannedClasses: int
+    givenClasses: int
     absences: int
     grade1: float
     grade2: float
@@ -21,6 +24,12 @@ class Discipline:
 
         if type(self.frequency) is str:
             self.frequency = int(self.frequency)
+
+        if type(self.plannedClasses) is str:
+            self.plannedClasses = int(self.plannedClasses)
+
+        if type(self.givenClasses) is str:
+            self.givenClasses = int(self.givenClasses)
 
         if type(self.grade1) is str:
             if self.grade1 == "":

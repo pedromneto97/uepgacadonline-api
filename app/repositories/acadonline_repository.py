@@ -75,11 +75,17 @@ def get_grade_with_info(token):
 
     return grades
 
+
 def get_disciplines(token):
     disciplines = acadonline_service.get_disciplines(token)
 
     return disciplines
 
+
+def get_class_schedule(token):
+    acadonline_service.get_extract(token)
+
+    return None
 
 
 def get_additional_activities(token):

@@ -105,6 +105,18 @@ def get_grade(token):
 
     return grades
 
+
+def get_extract(token):
+    extract_file = requests.get(
+        endpoints.acadonline.extract,
+        headers=_get_headers(token)
+    )
+
+    print(extract_file.content)
+
+    return None
+
+
 def get_disciplines(token):
     disciplines_page = requests.get(
         endpoints.acadonline.grades,

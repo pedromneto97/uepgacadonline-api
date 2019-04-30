@@ -136,6 +136,18 @@ def get_disciplines():
     )
 
 
+@acadonline_blueprint.route('/schedule', methods=["GET"])
+def get_schedule():
+    token = request.headers.get("x-api-token")
+
+    acadonline_repository.get_class_schedule(token)
+
+    return success(
+        message="Horário retornado com sucesso!",
+        token=token
+    )
+
+
 @acadonline_blueprint.route("/activities", methods=["GET"])
 def get_additional_activities():
     token = request.headers.get("x-api-token")
