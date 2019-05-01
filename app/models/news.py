@@ -10,7 +10,7 @@ class News:
     author: str
     content: str
     created_at: datetime.datetime
-    updated_at: datetime.datetime
+    updated_at: datetime.datetime = None
 
     def __post_init__(self):
         pass
