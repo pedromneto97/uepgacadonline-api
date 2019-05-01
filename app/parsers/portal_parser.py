@@ -6,24 +6,24 @@ from app.models.news import News
 
 
 def parse_news_item(news_page, date):
-    try:
-        news_raw = [
+    # try:
+    news_raw = [
+        [
+            value.find("div", "data").text,
             [
-                value.find("div", "data").text,
-                [
-                    ItemNews(
-                        p.find("a")['href'],
-                        p.find("span", "hora").text,
-                        p.find("a").text
-                    ).__dict__ for p in value.find_all("p")
-                ]
+                ItemNews(
+                    p.find("a")['href'],
+                    p.find("span", "hora").text,
+                    p.find("a").text
+                ).__dict__ for p in value.find_all("p")
             ]
-            for value in BeautifulSoup(news_page.content, features="lxml").find_all("div", {"class": "chamada"})[1:]
         ]
-        news = GroupNews(news_raw).__dict__
-        news = [new for new in news["news"] if new["date"] == date][0]
-    except:
-        news = None
+        for value in BeautifulSoup(news_page.content, features="lxml").find_all("div", {"class": "chamada"})[1:]
+    ]
+    news = GroupNews(news_raw).__dict__
+    news = [new for new in news["news"] if new["date"] == date][0]
+    # except:
+    #     news = None
 
     return news
 
