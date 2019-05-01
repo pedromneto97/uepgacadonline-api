@@ -13,5 +13,5 @@ class DailyNews:
 
     def __post_init__(self):
         if type(self.date) == str:
-            locale.setlocale(locale.LC_ALL, 'pt_BR')
+            locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
             self.date = datetime.datetime.strptime(self.date, '%d %b %Y')
