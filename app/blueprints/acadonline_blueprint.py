@@ -39,10 +39,12 @@ def authenticate():
 
 @acadonline_blueprint.route("/home", methods=["GET"])
 def home():
-    date = request.form.get('date')
+    date = request.args.get("date")
 
     if date is None:
-        date = datetime.today().strftime('%d/%m/%Y')
+        date = datetime.today()
+    else:
+        date = datetime.strptime(date, '%d/%m/%Y')
 
     _featured = portal_repository.featured()
     _news = portal_repository.news_item(date)
