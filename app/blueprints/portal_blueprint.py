@@ -8,17 +8,26 @@ from app.repositories import portal_repository
 portal_blueprint = Blueprint("portal", __name__, url_prefix="/portal")
 
 
+@portal_blueprint.route('/featured', methods=["GET"])
+def featured():
+    _featured = portal_repository.featured()
+
+    return success(
+        message="Destaques retornados com sucesso",
+        featured=_featured
+    )
+
+
 @portal_blueprint.route("/newsitem", methods=["GET"])
 def news_item():
     date = request.args.get("date")
     date = datetime.datetime.strptime(date, '%d/%m/%Y')
 
-    news = portal_repository.news_item(date)
-    # news = portal_repository.news_item_mock()
+    _news = portal_repository.news_item(date)
 
     return success(
         message="Noticias retornadas com sucesso",
-        daily_news=news
+        daily_news=_news
     )
 
 
@@ -26,9 +35,9 @@ def news_item():
 def news():
     cod = request.args.get("cod")
 
-    news = portal_repository.news(cod)
+    _news = portal_repository.news(cod)
 
     return success(
         message="Noticias retornadas com sucesso",
-        news=news
+        news=_news
     )

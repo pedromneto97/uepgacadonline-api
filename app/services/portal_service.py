@@ -2,7 +2,17 @@ import requests
 
 from app import endpoints
 
-from app.parsers.portal_parser import parse_news_item, parse_news
+from app.parsers.portal_parser import parse_news_item, parse_news, parse_featured
+
+
+def featured():
+    featured_page = requests.get(
+        endpoints.portal.featured
+    )
+
+    featured_ = parse_featured(featured_page)
+
+    return featured_
 
 
 def news_item(date):
@@ -32,6 +42,6 @@ def news(cod):
         params
     )
 
-    news = parse_news(news_page)
+    news_ = parse_news(news_page)
 
-    return news
+    return news_

@@ -1,8 +1,27 @@
 from bs4 import BeautifulSoup
 
+from app.models.featured import Featured
 from app.models.group_news import GroupNews
 from app.models.item_news import ItemNews
 from app.models.news import News
+
+
+def parse_featured(featured_page):
+    image_prefix = "https://portal.uepg.br/"
+
+    try:
+        featured = [
+            Featured(
+                image_prefix + value.find("a").find("img")['src'],
+                value.find("a")['href']
+            ).__dict__
+            for value in
+            BeautifulSoup(featured_page.content, features="lxml").find("ul", {"id": "slider"}).find_all("li")
+        ]
+    except:
+        featured = None
+
+    return featured
 
 
 def parse_news_item(news_page, date):
@@ -36,29 +55,31 @@ def search_content(s):
 
 
 def parse_news(news_page):
-    try:
-        news_raw = BeautifulSoup(news_page.content, features="lxml").find("div", "noticia")
+    # try:
+    news_raw = BeautifulSoup(news_page.content, features="lxml").find("div", "noticia")
 
-        state = len(news_raw.find_all("em"))
+    print(news_raw.find_all("em"))
 
-        if state == 1:
-            news = News(
-                news_raw.find("h1", "noticia").text,
-                news_raw.find("h2").text if news_raw.find("h2") else "",
-                news_raw.find("em").text[4:],
-                search_content(str(news_raw)),
-                news_raw.find("strong").text,
-            ).__dict__
-        else:
-            news = News(
-                news_raw.find("h1", "noticia").text,
-                news_raw.find("h2").text if news_raw.find("h2") else "",
-                news_raw.find_all("em")[1].text[4:],
-                search_content(str(news_raw)),
-                news_raw.find("strong").text,
-                news_raw.find("em").text[14:]
-            ).__dict__
-    except:
-        news = None
+    state = len(news_raw.find_all("em"))
+
+    if state == 1:
+        news = News(
+            news_raw.find("h1", "noticia").text,
+            news_raw.find("h2").text if news_raw.find("h2") else "",
+            news_raw.find("em").text[4:],
+            search_content(str(news_raw)),
+            news_raw.find("strong").text,
+        ).__dict__
+    else:
+        news = News(
+            news_raw.find("h1", "noticia").text,
+            news_raw.find("h2").text if news_raw.find("h2") else "",
+            news_raw.find_all("em")[1].text[4:],
+            search_content(str(news_raw)),
+            news_raw.find("strong").text,
+            news_raw.find("em").text[14:]
+        ).__dict__
+    # except:
+    #     news = None
 
     return news
