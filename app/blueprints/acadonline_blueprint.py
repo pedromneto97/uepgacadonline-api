@@ -1,6 +1,6 @@
 from flask import Blueprint, request, make_response
 
-from app.repositories import acadonline_repository
+from app.repositories import acadonline_repository, portal_repository
 
 from utils.response import success, error, conditional_response
 
@@ -34,6 +34,15 @@ def authenticate():
         )
     )
 
+
+@acadonline_blueprint.route("/home", methods=["GET"])
+def home():
+    _featured = portal_repository.featured()
+
+    return success(
+        message="Destaques retornados com sucesso",
+        featured=_featured
+    )
 
 @acadonline_blueprint.route("/perfil", methods=["GET"])
 def get_perfil():
