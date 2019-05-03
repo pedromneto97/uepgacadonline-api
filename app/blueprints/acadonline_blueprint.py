@@ -4,6 +4,8 @@ from app.repositories import acadonline_repository, portal_repository
 
 from utils.response import success, error, conditional_response
 
+from datetime import datetime
+
 acadonline_blueprint = Blueprint("acadonline", __name__, url_prefix="/acadonline")
 
 
@@ -37,11 +39,18 @@ def authenticate():
 
 @acadonline_blueprint.route("/home", methods=["GET"])
 def home():
+    date = request.form.get('date')
+
+    if date is None:
+        date = datetime.today().strftime('%d/%m/%Y')
+
     _featured = portal_repository.featured()
+    _news = portal_repository.news_item(date)
 
     return success(
         message="Destaques retornados com sucesso",
-        featured=_featured
+        featured=_featured,
+        daily_news=_news
     )
 
 @acadonline_blueprint.route("/perfil", methods=["GET"])
