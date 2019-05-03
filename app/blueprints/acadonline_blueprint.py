@@ -42,7 +42,7 @@ def home():
     date = request.args.get("date")
 
     if date is None:
-        date = datetime.today()
+        date = datetime.strptime(datetime.today().strftime('%d/%m/%Y'), '%d/%m/%Y')
     else:
         date = datetime.strptime(date, '%d/%m/%Y')
 
