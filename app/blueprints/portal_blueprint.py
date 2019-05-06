@@ -31,6 +31,19 @@ def news_item():
     )
 
 
+@portal_blueprint.route("/newsitemsweekly", methods=["GET"])
+def news_items_weekly():
+    date = request.args.get("date")
+    date = datetime.datetime.strptime(date, '%d/%m/%Y')
+
+    _news = portal_repository.news_items_weekly(date)
+
+    return success(
+        message="Noticias retornadas com sucesso",
+        weekly_news=_news
+    )
+
+
 @portal_blueprint.route("/news", methods=["GET"])
 def news():
     cod = request.args.get("cod")

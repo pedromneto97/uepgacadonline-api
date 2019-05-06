@@ -47,6 +47,30 @@ def parse_news_item(news_page, date):
     return news
 
 
+def parse_news_items_weekly(news_items_weekly_page, date):
+    try:
+        news_raw = [
+            [
+                value.find("div", "data").text,
+                [
+                    ItemNews(
+                        p.find("a")['href'],
+                        p.find("span", "hora").text,
+                        p.find("a").text
+                    ).__dict__ for p in value.find_all("p")
+                ]
+            ]
+            for value in
+            BeautifulSoup(news_items_weekly_page.content, features="lxml").find_all("div", {"class": "chamada"})[1:]
+        ]
+        news = GroupNews(news_raw).__dict__
+        news = [new for new in news["news"]]
+    except:
+        news = None
+
+    return news
+
+
 def search_content(s):
     begin = s.find('<p align="justify"></p>')
     end = s.find('\n</div\r\n<p>&nbsp;</p>')

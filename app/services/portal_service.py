@@ -2,7 +2,7 @@ import requests
 
 from app import endpoints
 
-from app.parsers.portal_parser import parse_news_item, parse_news, parse_featured
+from app.parsers.portal_parser import parse_news_item, parse_news, parse_featured, parse_news_items_weekly
 
 
 def featured():
@@ -28,6 +28,23 @@ def news_item(date):
     )
 
     group = parse_news_item(news_page, date)
+
+    return group
+
+
+def news_items_weekly(date):
+    params = {
+        "ano": date.year,
+        "mes": date.month
+    }
+
+    news_weekly_page = requests.post(
+        endpoints.portal.news_item,
+        params,
+        verify=False
+    )
+
+    group = parse_news_items_weekly(news_weekly_page, date)
 
     return group
 
