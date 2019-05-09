@@ -24,12 +24,9 @@ def remember_password(token):
 
 
 def get_grade(token):
-    grades = {
-        "disciplines": acadonline_service.get_grade(token)
-    }
+    disciplines = acadonline_service.get_grade(token)
 
-    return grades
-
+    return disciplines
 
 def get_grade_with_info(token):
     disciplines = acadonline_service.get_grade(token)

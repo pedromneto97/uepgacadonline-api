@@ -118,16 +118,16 @@ def get_grade():
     token = request.headers.get("x-api-token")
     extra = request.args.get("extra")
 
-    grade = acadonline_repository.get_grade_with_info(token) if extra else acadonline_repository.get_grade(token)
+    disciplines = acadonline_repository.get_grade_with_info(token) if extra else acadonline_repository.get_grade(token)
 
-    condition = len(grade["disciplines"]) > 0
+    condition = len(disciplines) > 0
 
     return conditional_response(
         condition,
         success(
             message="Notas capturadas com sucesso!",
             token=token,
-            grade=grade
+            disciplines=disciplines
         ),
         error(
             message="Erro ao capturar notas"
