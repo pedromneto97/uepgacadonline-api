@@ -1,7 +1,7 @@
 import datetime
 from flask import Blueprint, request
 
-from utils.date import now_formatted_subtracted_weeks
+from utils.date import now_formatted_subtracted_weeks, now_subtracted_weeks
 from utils.response import success
 
 from repositories import portal_repository
@@ -36,16 +36,16 @@ def weekly_news_items():
     return success(message="Noticias retornadas com sucesso", weekly_news=_weekly_news_items)
 
 
-@portal_blueprint.route("/new_items", methods=["GET"])
+@portal_blueprint.route("/news_items", methods=["GET"])
 def news_items():
-    page = request.args.get("page", 1)
+    page = int(request.args.get("page", 1))
 
-    initial_date = now_formatted_subtracted_weeks(page * 2)
-    final_date = now_formatted_subtracted_weeks((page - 1) * 2)
+    initial_date = now_subtracted_weeks(page * 2)
+    final_date = now_subtracted_weeks((page - 1) * 2)
 
     _news_items = portal_repository.news_items(initial_date, final_date)
 
-    return success(message="Noticias retornadas com sucesso", weekly_news=_news_items)
+    return success(message="Noticias retornadas com sucesso", news_items=_news_items)
 
 
 @portal_blueprint.route("/news_item", methods=["GET"])

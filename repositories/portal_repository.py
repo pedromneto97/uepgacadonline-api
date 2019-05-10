@@ -14,7 +14,7 @@ def weekly_news_items(date):
 
 
 def news_items(initial_date, final_date):
-    return portal_service.weekly_news_items(initial_date, final_date)
+    return portal_service.news_items(initial_date, final_date)
 
 
 def news(cod):

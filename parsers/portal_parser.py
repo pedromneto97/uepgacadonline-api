@@ -24,22 +24,9 @@ def parse_featured(featured_page):
     return featured
 
 
-def parse_news_item(news_page, date):
+def parse_daily_news_items(news_page, date):
     try:
-        news_raw = [
-            [
-                value.find("div", "data").text,
-                [
-                    ItemNews(
-                        p.find("a")['href'],
-                        p.find("span", "hora").text,
-                        p.find("a").text
-                    ).__dict__ for p in value.find_all("p")
-                ]
-            ]
-            for value in BeautifulSoup(news_page.content, features="lxml").find_all("div", {"class": "chamada"})[1:]
-        ]
-        news = GroupNews(news_raw).__dict__
+        news = search_news(news_page)
         news = [new for new in news["news"] if new["date"] == date][0]
     except:
         news = None
@@ -47,28 +34,47 @@ def parse_news_item(news_page, date):
     return news
 
 
-def parse_news_items_weekly(news_items_weekly_page, date):
+def parse_weekly_news_items(news_items_weekly_page, date):
     try:
-        news_raw = [
-            [
-                value.find("div", "data").text,
-                [
-                    ItemNews(
-                        p.find("a")['href'],
-                        p.find("span", "hora").text,
-                        p.find("a").text
-                    ).__dict__ for p in value.find_all("p")
-                ]
-            ]
-            for value in
-            BeautifulSoup(news_items_weekly_page.content, features="lxml").find_all("div", {"class": "chamada"})[1:]
-        ]
-        news = GroupNews(news_raw).__dict__
+        news = search_news(news_items_weekly_page)
         news = [new for new in news["news"]]
     except:
         news = None
 
     return news
+
+
+def parse_news_items(final_page, final_date, initial_page=None, initial_date=None):
+    try:
+        final_news = search_news(final_page)
+        news = [new for new in final_news["news"] if final_date >= new["date"] > initial_date]
+
+        if initial_page is not None and initial_date is not None:
+            initial_news = search_news(initial_page)
+            print(initial_date)
+            initial_news = [new for new in initial_news["news"] if final_date >= new["date"] > initial_date]
+
+            news = news + initial_news
+    except:
+        news = []
+
+    return news
+
+def search_news(news_page):
+    return GroupNews([
+        [
+            value.find("div", "data").text,
+            [
+                ItemNews(
+                    p.find("a")['href'],
+                    p.find("span", "hora").text,
+                    p.find("a").text
+                ).__dict__ for p in value.find_all("p")
+            ]
+        ]
+        for value in
+        BeautifulSoup(news_page.content, features="lxml").find_all("div", {"class": "chamada"})[1:]
+    ]).__dict__
 
 
 def search_content(s):
