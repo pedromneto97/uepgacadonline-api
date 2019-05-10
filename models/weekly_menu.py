@@ -1,4 +1,4 @@
-from app.models.daily_menu import DailyMenu
+from models.daily_menu import DailyMenu
 
 
 class WeeklyMenu:

@@ -3,11 +3,11 @@ from flask import Blueprint, request
 import requests
 from bs4 import BeautifulSoup
 
-from app import endpoints
-from app.utils.urls import pergamum_urls
-from app.utils.response import success
+import endpoints
+from utils.urls import pergamum_urls
+from utils.response import success
 
-from app.repositories import pergamum_repository
+from repositories import pergamum_repository
 
 pergamum_blueprint = Blueprint("pergamum", __name__, url_prefix="/pergamum")
 

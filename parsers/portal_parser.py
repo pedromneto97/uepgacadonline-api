@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
 
-from app.models.featured import Featured
-from app.models.group_news import GroupNews
-from app.models.item_news import ItemNews
-from app.models.news import News
+from models.featured import Featured
+from models.group_news import GroupNews
+from models.item_news import ItemNews
+from models.news import News
 
 
 def parse_featured(featured_page):

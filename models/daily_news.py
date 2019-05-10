@@ -3,7 +3,7 @@ import locale
 from dataclasses import dataclass
 from typing import List
 
-from app.models.item_news import ItemNews
+from models.item_news import ItemNews
 
 
 @dataclass

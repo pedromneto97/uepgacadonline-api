@@ -1,8 +1,8 @@
 from flask import Blueprint, request, make_response
 
-from app.repositories import acadonline_repository, portal_repository
+from repositories import portal_repository, acadonline_repository
 
-from app.utils.response import success, error, conditional_response
+from utils.response import success, error, conditional_response
 
 from datetime import datetime
 

@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 
-from app.models.loans import Loans
+from models.loans import Loans
 
 
 def parse_books(books_page):

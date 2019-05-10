@@ -1,8 +1,8 @@
 import requests
 
-from app import endpoints
+import endpoints
 
-from app.parsers.portal_parser import parse_news_item, parse_news, parse_featured, parse_news_items_weekly
+from parsers.portal_parser import parse_news_item, parse_news, parse_featured, parse_news_items_weekly
 
 
 def featured():

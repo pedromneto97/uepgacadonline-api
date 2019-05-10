@@ -1,10 +1,8 @@
 from bs4 import BeautifulSoup
 
-from app.models.activity import Activity
-from app.models.grade import Grade
-from app.models.perfil import Perfil
-
-from collections import ChainMap
+from models.activity import Activity
+from models.grade import Grade
+from models.perfil import Perfil
 
 
 def parse_additional_activities(activities_page):

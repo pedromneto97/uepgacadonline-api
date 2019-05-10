@@ -1,4 +1,4 @@
-from app.services import acadonline_service
+from services import acadonline_service
 
 
 def authenticate(login, password):

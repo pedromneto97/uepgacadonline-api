@@ -2,7 +2,7 @@ import re
 
 from bs4 import BeautifulSoup
 
-from app.models.weekly_menu import WeeklyMenu
+from models.weekly_menu import WeeklyMenu
 
 
 def parse_menu(menu_page):

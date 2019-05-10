@@ -1,4 +1,4 @@
-from app.services import ru_service
+from services import ru_service
 
 
 def weekly_menu(campus, shift, next):

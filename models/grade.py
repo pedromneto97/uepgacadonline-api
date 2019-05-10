@@ -1,4 +1,4 @@
-from app.models.discipline import Discipline
+from models.discipline import Discipline
 
 
 class Grade:

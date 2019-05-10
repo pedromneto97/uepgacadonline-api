@@ -1,4 +1,4 @@
-from app.utils.map import Map
+from utils.map import Map
 
 acadonline = Map({
     "home": "https://sistemas.uepg.br/academicoonline/login/index",

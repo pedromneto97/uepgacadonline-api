@@ -1,9 +1,9 @@
 import datetime
 from flask import Blueprint, request
 
-from app.utils.response import success
+from utils.response import success
 
-from app.repositories import portal_repository
+from repositories import portal_repository
 
 portal_blueprint = Blueprint("portal", __name__, url_prefix="/portal")
 

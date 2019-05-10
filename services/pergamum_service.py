@@ -1,9 +1,9 @@
 import requests
 
-from app import endpoints
+import endpoints
 from bs4 import BeautifulSoup
 
-from app.parsers.pergamum_parser import parse_books
+from parsers.pergamum_parser import parse_books
 
 
 def authenticate(login, password):

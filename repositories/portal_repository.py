@@ -1,4 +1,4 @@
-from app.services import portal_service
+from services import portal_service
 
 
 def featured():

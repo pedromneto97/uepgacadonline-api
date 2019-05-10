@@ -1,7 +1,7 @@
 import requests
 
-from app import endpoints
-from app.parsers import acadonline_parser
+import endpoints
+from parsers import acadonline_parser
 
 
 def authenticate(data):

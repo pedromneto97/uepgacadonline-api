@@ -1,4 +1,4 @@
-from app.services import pergamum_service
+from services import pergamum_service
 
 
 def authenticate(login, password):

@@ -1,4 +1,4 @@
-from app.models.daily_news import DailyNews
+from models.daily_news import DailyNews
 
 
 class GroupNews:

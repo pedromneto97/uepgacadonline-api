@@ -1,4 +1,4 @@
-from app.models.loan import Loan
+from models.loan import Loan
 
 
 class Loans:

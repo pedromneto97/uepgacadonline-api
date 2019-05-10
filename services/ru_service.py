@@ -1,7 +1,7 @@
 import requests
 
-from app import endpoints
-from app.parsers import ru_parser
+import endpoints
+from parsers import ru_parser
 
 
 def weekly_menu(data):
