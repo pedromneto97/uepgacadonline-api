@@ -2,7 +2,7 @@ from flask import Blueprint, request, make_response
 
 from app.repositories import acadonline_repository, portal_repository
 
-from utils.response import success, error, conditional_response
+from app.utils.response import success, error, conditional_response
 
 from datetime import datetime
 

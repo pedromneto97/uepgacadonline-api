@@ -1,11 +1,11 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 
 import requests
 from bs4 import BeautifulSoup
 
 from app import endpoints
-from utils.urls import pergamum_urls
-from utils.response import success, error
+from app.utils.urls import pergamum_urls
+from app.utils.response import success
 
 from app.repositories import pergamum_repository
 

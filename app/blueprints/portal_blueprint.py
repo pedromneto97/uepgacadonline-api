@@ -1,7 +1,7 @@
 import datetime
-from flask import Blueprint, request, make_response
+from flask import Blueprint, request
 
-from utils.response import success, error
+from app.utils.response import success
 
 from app.repositories import portal_repository
 

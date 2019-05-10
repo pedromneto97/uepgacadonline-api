@@ -1,9 +1,9 @@
-from flask import Blueprint, request, make_response
+from flask import Blueprint, request
 
 from app.repositories import ru_repository
 from app.samples import ru_sample
 
-from utils.response import success, error
+from app.utils.response import success
 
 ru_blueprint = Blueprint("ru", __name__, url_prefix="/ru")
 
