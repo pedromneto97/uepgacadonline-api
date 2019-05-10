@@ -18,23 +18,10 @@ def authenticate():
 
     perfil = acadonline_repository.get_perfil(token)
 
-    response = make_response(
-        success(
-            message="Login realizado com sucesso",
-            perfil=perfil,
-            token=token
-        )
-    )
-
+    response = make_response(success(message="Login realizado com sucesso", perfil=perfil, token=token))
     response.headers["x-api-token"] = token
 
-    return conditional_response(
-        perfil,
-        response,
-        error(
-            message="Usuário inválido"
-        )
-    )
+    return conditional_response(perfil, response, error(message="Usuário inválido"))
 
 
 @acadonline_blueprint.route("/home", methods=["GET"])
@@ -49,11 +36,8 @@ def home():
     _featured = portal_repository.featured()
     _news = portal_repository.news_item(date)
 
-    return success(
-        message="Destaques retornados com sucesso",
-        featured=_featured,
-        daily_news=_news
-    )
+    return success(message="Destaques retornados com sucesso", featured=_featured, daily_news=_news)
+
 
 @acadonline_blueprint.route("/perfil", methods=["GET"])
 def get_perfil():
@@ -81,9 +65,7 @@ def set_perfil():
 
     acadonline_repository.set_perfil(token, data)
 
-    return success(
-        message="Perfil atualizado com sucesso", token=token
-    )
+    return success(message="Perfil atualizado com sucesso", token=token)
 
 
 @acadonline_blueprint.route("/password", methods=["POST"])
@@ -93,10 +75,7 @@ def set_password():
 
     acadonline_repository.set_password(token, data)
 
-    return success(
-        message="Perfil atualizado com sucesso",
-        token=token
-    )
+    return success(message="Perfil atualizado com sucesso", token=token)
 
 
 @acadonline_blueprint.route("/rememberpassword", methods=["POST"])

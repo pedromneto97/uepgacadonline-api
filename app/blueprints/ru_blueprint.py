@@ -1,6 +1,7 @@
 from flask import Blueprint, request, make_response
 
 from app.repositories import ru_repository
+from app.samples import ru_sample
 
 from utils.response import success, error
 
@@ -12,11 +13,8 @@ def menu():
     campus = request.args.get("campus")
     shift = request.args.get("shift")
     next = request.args.get("next")
+    sample = request.args.get("sample")
 
-    # weekly_menu = ru_repository.weekly_menu(campus, shift, next)
-    weekly_menu = ru_repository.weekly_menu_mock()
+    weekly_menu = ru_sample.weekly_menu_sample() if sample else ru_repository.weekly_menu(campus, shift, next)
 
-    return success(
-        message="Cardápio retornado com sucesso",
-        weekly_menu=weekly_menu
-    )
+    return success(message="Cardápio retornado com sucesso", weekly_menu=weekly_menu)

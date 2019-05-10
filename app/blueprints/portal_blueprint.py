@@ -12,10 +12,7 @@ portal_blueprint = Blueprint("portal", __name__, url_prefix="/portal")
 def featured():
     _featured = portal_repository.featured()
 
-    return success(
-        message="Destaques retornados com sucesso",
-        featured=_featured
-    )
+    return success(message="Destaques retornados com sucesso", featured=_featured)
 
 
 @portal_blueprint.route("/newsitem", methods=["GET"])
@@ -25,10 +22,7 @@ def news_item():
 
     _news = portal_repository.news_item(date)
 
-    return success(
-        message="Noticias retornadas com sucesso",
-        daily_news=_news
-    )
+    return success(message="Noticias retornadas com sucesso", daily_news=_news)
 
 
 @portal_blueprint.route("/newsitemsweekly", methods=["GET"])
@@ -38,10 +32,7 @@ def news_items_weekly():
 
     _news = portal_repository.news_items_weekly(date)
 
-    return success(
-        message="Noticias retornadas com sucesso",
-        weekly_news=_news
-    )
+    return success(message="Noticias retornadas com sucesso", weekly_news=_news)
 
 
 @portal_blueprint.route("/news", methods=["GET"])
@@ -50,7 +41,4 @@ def news():
 
     _news = portal_repository.news(cod)
 
-    return success(
-        message="Noticias retornadas com sucesso",
-        news=_news
-    )
+    return success(message="Noticias retornadas com sucesso", news=_news)

@@ -19,9 +19,7 @@ def login():
 
     token = pergamum_repository.authenticate(login, password)
 
-    return success(
-        message="Login realizado com sucesso", token=token
-    )
+    return success(message="Login realizado com sucesso", token=token)
 
 
 @pergamum_blueprint.route("/home", methods=["GET"])
@@ -47,8 +45,6 @@ def search():
     search_page = requests.get(pergamum_urls["search"], params=params, headers=headers)
 
     books_raw = BeautifulSoup(search_page.content, features="lxml")("table")
-
-    print(books_raw)
 
     return success(message="Livros retornados com sucesso!", token=phpsessid)
 
