@@ -15,7 +15,7 @@ def featured():
     return featured_
 
 
-def news_item(date):
+def daily_news_item(date):
     params = {
         "ano": date.year,
         "mes": date.month
@@ -32,7 +32,7 @@ def news_item(date):
     return group
 
 
-def news_items_weekly(date):
+def weekly_news_items(date):
     params = {
         "ano": date.year,
         "mes": date.month
@@ -48,6 +48,21 @@ def news_items_weekly(date):
 
     return group
 
+def news_items(initial_date, final_date):
+    params = {
+        "ano": initial_date.year,
+        "mes": final_date.month
+    }
+
+    news_weekly_page = requests.post(
+        endpoints.portal.news_item,
+        params,
+        verify=False
+    )
+
+    group = parse_news_items_weekly(news_weekly_page, initial_date)
+
+    return group
 
 def news(cod):
     params = {
