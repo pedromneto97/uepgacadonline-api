@@ -1,3 +1,4 @@
+from samples import acadonline_sample
 from services import acadonline_service
 
 
@@ -23,10 +24,11 @@ def remember_password(token):
     return acadonline_service.remember_password(token)
 
 
-def get_grade(token):
-    disciplines = acadonline_service.get_grade(token)
+def get_grade(token, sample):
+    disciplines = acadonline_sample.get_grade_sample() if sample else acadonline_service.get_grade(token)
 
     return disciplines
+
 
 def get_grade_with_info(token):
     disciplines = acadonline_service.get_grade(token)

@@ -96,8 +96,10 @@ def get_documents():
 def get_grade():
     token = request.headers.get("x-api-token")
     extra = request.args.get("extra")
+    sample = bool(request.args.get("sample"))
 
-    disciplines = acadonline_repository.get_grade_with_info(token) if extra else acadonline_repository.get_grade(token)
+    disciplines = acadonline_repository.get_grade_with_info(token) \
+        if extra else acadonline_repository.get_grade(token, sample)
 
     condition = len(disciplines) > 0
 

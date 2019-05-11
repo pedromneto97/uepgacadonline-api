@@ -15,6 +15,6 @@ def menu():
     next = request.args.get("next")
     sample = request.args.get("sample")
 
-    weekly_menu = ru_sample.weekly_menu_sample() if sample else ru_repository.weekly_menu(campus, shift, next)
+    weekly_menu = ru_repository.weekly_menu(campus, shift, next, sample)
 
     return success(message="Cardápio retornado com sucesso", weekly_menu=weekly_menu)
