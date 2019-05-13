@@ -31,3 +31,7 @@ portal = Map({
     "news_item": "https://portal.uepg.br/selnoticia.php",
     "news": "https://portal.uepg.br/noticias.php"
 })
+
+eventos = Map({
+    "home": "https://siseve.apps.uepg.br"
+})
