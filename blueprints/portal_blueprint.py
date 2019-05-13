@@ -1,7 +1,8 @@
 import datetime
 from flask import Blueprint, request
 
-from utils.date import now_formatted_subtracted_weeks, now_subtracted_weeks
+from cache import cache
+from utils.date import now_subtracted_weeks
 from utils.response import success
 
 from repositories import portal_repository
@@ -17,6 +18,7 @@ def featured():
 
 
 @portal_blueprint.route("/daily_news_items", methods=["GET"])
+@cache.cached(timeout=120, query_string=True)
 def daily_news_items():
     date = request.args.get("date")
     date = datetime.datetime.strptime(date, '%d/%m/%Y')
@@ -27,6 +29,7 @@ def daily_news_items():
 
 
 @portal_blueprint.route("/weekly_news_items", methods=["GET"])
+@cache.cached(timeout=120, query_string=True)
 def weekly_news_items():
     date = request.args.get("date")
     date = datetime.datetime.strptime(date, '%d/%m/%Y')
@@ -37,6 +40,7 @@ def weekly_news_items():
 
 
 @portal_blueprint.route("/news_items", methods=["GET"])
+@cache.cached(timeout=120, query_string=True)
 def news_items():
     page = int(request.args.get("page", 1))
 
@@ -45,10 +49,11 @@ def news_items():
 
     _news_items = portal_repository.news_items(initial_date, final_date)
 
-    return success(message="Noticias retornadas com sucesso", news_items=_news_items)
+    return success(message="Noticias retornadapys com sucesso", news_items=_news_items)
 
 
 @portal_blueprint.route("/news_item", methods=["GET"])
+@cache.cached(timeout=600, query_string=True)
 def news_item():
     cod = request.args.get("cod")
 

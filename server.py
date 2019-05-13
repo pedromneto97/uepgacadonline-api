@@ -4,8 +4,10 @@ from blueprints.acadonline_blueprint import acadonline_blueprint
 from blueprints.pergamum_blueprint import pergamum_blueprint
 from blueprints.ru_blueprint import ru_blueprint
 from blueprints.portal_blueprint import portal_blueprint
+from cache import cache
 
 app = Flask(__name__)
+cache.init_app(app)
 
 
 @app.route("/", methods=["GET"])

@@ -1,5 +1,6 @@
 from flask import Blueprint, request, make_response
 
+from cache import cache
 from repositories import portal_repository, acadonline_repository
 
 from utils.response import success, error, conditional_response
@@ -25,6 +26,7 @@ def authenticate():
 
 
 @acadonline_blueprint.route("/home", methods=["GET"])
+@cache.cached(timeout=120, query_string=True)
 def home():
     date = request.args.get("date")
 
